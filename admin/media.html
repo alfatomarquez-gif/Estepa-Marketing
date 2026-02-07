@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Biblioteca de Media - Estepa Marketing">
+    <title>Media - Estepa Marketing Admin</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>Estepa Marketing</h2>
+                <p class="sidebar-subtitle">Panel Admin</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="companies.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span>Empresas</span>
+                </a>
+                <a href="content.html" class="nav-item">
+                    <span class="nav-icon">📝</span>
+                    <span>Contenido</span>
+                </a>
+                <a href="media.html" class="nav-item active">
+                    <span class="nav-icon">🖼️</span>
+                    <span>Media</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span>Mensajes</span>
+                </a>
+                <a href="faq-generator.html" class="nav-item">
+                    <span class="nav-icon">🤖</span>
+                    <span>FAQs con IA</span>
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span>Calendario</span>
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Configuración</span>
+                </a>
+                <div class="nav-divider"></div>
+                <a href="../index.html" class="nav-item">
+                    <span class="nav-icon">🌐</span>
+                    <span>Ver Sitio Público</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <p class="user-name" id="userName">Admin User</p>
+                        <p class="user-email" id="userEmail">admin@estepa.com</p>
+                    </div>
+                </div>
+                <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="btn-menu-toggle" id="menuToggle">☰</button>
+                    <h1>Biblioteca de Media</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="search" placeholder="Buscar media..." class="search-input" id="searchMedia">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <button class="btn-notifications">
+                        <span class="notification-icon">🔔</span>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Actions Bar -->
+                <div class="actions-bar">
+                    <button class="btn-primary" id="btnUploadMedia">
+                        <span>📤</span>
+                        Subir Archivos
+                    </button>
+                    <div class="actions-right">
+                        <select class="filter-select" id="filterCompany">
+                            <option value="">Todas las empresas</option>
+                        </select>
+                        <select class="filter-select" id="filterType">
+                            <option value="">Todos los tipos</option>
+                            <option value="image">Imágenes</option>
+                            <option value="video">Videos</option>
+                            <option value="document">Documentos</option>
+                            <option value="other">Otros</option>
+                        </select>
+                        <button class="btn-secondary" id="btnBulkDelete" disabled>Eliminar Seleccionados</button>
+                    </div>
+                </div>
+
+                <!-- Upload Dropzone -->
+                <div class="upload-dropzone" id="uploadDropzone">
+                    <div class="dropzone-content">
+                        <span class="dropzone-icon">📤</span>
+                        <h3>Arrastra archivos aquí</h3>
+                        <p>o haz clic para seleccionar archivos</p>
+                        <small>Máximo 10MB por archivo. Formatos soportados: JPG, PNG, GIF, MP4, PDF, DOC</small>
+                        <input type="file" id="fileInput" multiple accept="image/*,video/*,.pdf,.doc,.docx" hidden>
+                    </div>
+                    <div class="dropzone-progress" id="uploadProgress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <p class="progress-text" id="progressText">Subiendo... 0%</p>
+                    </div>
+                </div>
+
+                <!-- Media Grid -->
+                <div class="media-stats">
+                    <span id="mediaCount">0 archivos</span>
+                    <span id="mediaSize">0 MB</span>
+                </div>
+
+                <div class="media-grid" id="mediaGrid">
+                    <!-- Sample media items -->
+                    <div class="media-item" data-type="image">
+                        <input type="checkbox" class="media-checkbox">
+                        <div class="media-preview">
+                            <img src="https://via.placeholder.com/300x200" alt="Sample">
+                        </div>
+                        <div class="media-info">
+                            <p class="media-name">marketing-banner.jpg</p>
+                            <p class="media-meta">1920x1080 • 245 KB</p>
+                            <p class="media-date">Hace 2 días</p>
+                        </div>
+                        <div class="media-actions">
+                            <button class="btn-icon" title="Ver" data-action="view">👁️</button>
+                            <button class="btn-icon" title="Descargar" data-action="download">⬇️</button>
+                            <button class="btn-icon" title="Eliminar" data-action="delete">🗑️</button>
+                        </div>
+                    </div>
+
+                    <div class="media-item" data-type="image">
+                        <input type="checkbox" class="media-checkbox">
+                        <div class="media-preview">
+                            <img src="https://via.placeholder.com/300x200/4CAF50" alt="Sample">
+                        </div>
+                        <div class="media-info">
+                            <p class="media-name">social-post-01.png</p>
+                            <p class="media-meta">1080x1080 • 187 KB</p>
+                            <p class="media-date">Hace 3 días</p>
+                        </div>
+                        <div class="media-actions">
+                            <button class="btn-icon" title="Ver" data-action="view">👁️</button>
+                            <button class="btn-icon" title="Descargar" data-action="download">⬇️</button>
+                            <button class="btn-icon" title="Eliminar" data-action="delete">🗑️</button>
+                        </div>
+                    </div>
+
+                    <div class="media-item" data-type="video">
+                        <input type="checkbox" class="media-checkbox">
+                        <div class="media-preview media-video">
+                            <span class="media-type-icon">🎥</span>
+                        </div>
+                        <div class="media-info">
+                            <p class="media-name">promo-video.mp4</p>
+                            <p class="media-meta">1920x1080 • 8.2 MB</p>
+                            <p class="media-date">Hace 1 semana</p>
+                        </div>
+                        <div class="media-actions">
+                            <button class="btn-icon" title="Ver" data-action="view">👁️</button>
+                            <button class="btn-icon" title="Descargar" data-action="download">⬇️</button>
+                            <button class="btn-icon" title="Eliminar" data-action="delete">🗑️</button>
+                        </div>
+                    </div>
+
+                    <div class="media-item" data-type="document">
+                        <input type="checkbox" class="media-checkbox">
+                        <div class="media-preview media-document">
+                            <span class="media-type-icon">📄</span>
+                        </div>
+                        <div class="media-info">
+                            <p class="media-name">proposal-client.pdf</p>
+                            <p class="media-meta">PDF • 1.5 MB</p>
+                            <p class="media-date">Hace 2 semanas</p>
+                        </div>
+                        <div class="media-actions">
+                            <button class="btn-icon" title="Ver" data-action="view">👁️</button>
+                            <button class="btn-icon" title="Descargar" data-action="download">⬇️</button>
+                            <button class="btn-icon" title="Eliminar" data-action="delete">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn" id="btnPrevPage" disabled>Anterior</button>
+                    <div class="pagination-info">
+                        <span>Página <span id="currentPage">1</span> de <span id="totalPages">1</span></span>
+                    </div>
+                    <button class="pagination-btn" id="btnNextPage">Siguiente</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Media Preview Modal -->
+    <div class="modal" id="mediaPreviewModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Vista Previa</h2>
+                    <button class="modal-close" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="media-preview-container" id="mediaPreviewContainer">
+                        <!-- Preview content will be inserted here -->
+                    </div>
+                    <div class="media-details">
+                        <h3>Detalles del Archivo</h3>
+                        <div class="detail-row">
+                            <span class="detail-label">Nombre:</span>
+                            <span class="detail-value" id="detailName"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Tipo:</span>
+                            <span class="detail-value" id="detailType"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Tamaño:</span>
+                            <span class="detail-value" id="detailSize"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Dimensiones:</span>
+                            <span class="detail-value" id="detailDimensions"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Fecha de Subida:</span>
+                            <span class="detail-value" id="detailDate"></span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">URL:</span>
+                            <input type="text" class="form-control" id="detailUrl" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" id="btnCopyUrl">Copiar URL</button>
+                    <button type="button" class="btn-primary" id="btnDownload">Descargar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.mediaController) {
+                window.mediaController.init();
+            }
+
+            // Drag and drop functionality
+            const dropzone = document.getElementById('uploadDropzone');
+            const fileInput = document.getElementById('fileInput');
+
+            dropzone.addEventListener('click', () => fileInput.click());
+
+            dropzone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropzone.classList.add('dragover');
+            });
+
+            dropzone.addEventListener('dragleave', () => {
+                dropzone.classList.remove('dragover');
+            });
+
+            dropzone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropzone.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                handleFileUpload(files);
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                handleFileUpload(e.target.files);
+            });
+
+            function handleFileUpload(files) {
+                if (window.mediaController && window.mediaController.uploadFiles) {
+                    window.mediaController.uploadFiles(files);
+                }
+            }
+
+            // Bulk delete toggle
+            document.querySelectorAll('.media-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', updateBulkDeleteButton);
+            });
+
+            function updateBulkDeleteButton() {
+                const checked = document.querySelectorAll('.media-checkbox:checked').length;
+                document.getElementById('btnBulkDelete').disabled = checked === 0;
+            }
+        });
+    </script>
+</body>
+</html>

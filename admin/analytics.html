@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Analytics - Estepa Marketing">
+    <title>Analytics - Estepa Marketing Admin</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>Estepa Marketing</h2>
+                <p class="sidebar-subtitle">Panel Admin</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="companies.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span>Empresas</span>
+                </a>
+                <a href="content.html" class="nav-item">
+                    <span class="nav-icon">📝</span>
+                    <span>Contenido</span>
+                </a>
+                <a href="media.html" class="nav-item">
+                    <span class="nav-icon">🖼️</span>
+                    <span>Media</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span>Mensajes</span>
+                </a>
+                <a href="faq-generator.html" class="nav-item">
+                    <span class="nav-icon">🤖</span>
+                    <span>FAQs con IA</span>
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span>Calendario</span>
+                </a>
+                <a href="analytics.html" class="nav-item active">
+                    <span class="nav-icon">📈</span>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Configuración</span>
+                </a>
+                <div class="nav-divider"></div>
+                <a href="../index.html" class="nav-item">
+                    <span class="nav-icon">🌐</span>
+                    <span>Ver Sitio Público</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <p class="user-name" id="userName">Admin User</p>
+                        <p class="user-email" id="userEmail">admin@estepa.com</p>
+                    </div>
+                </div>
+                <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="btn-menu-toggle" id="menuToggle">☰</button>
+                    <h1>Analytics</h1>
+                </div>
+                <div class="header-right">
+                    <button class="btn-notifications">
+                        <span class="notification-icon">🔔</span>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Analytics Controls -->
+                <div class="analytics-controls">
+                    <div class="controls-left">
+                        <select class="filter-select" id="filterAnalyticsCompany">
+                            <option value="">Todas las empresas</option>
+                        </select>
+                    </div>
+                    <div class="controls-right">
+                        <select class="filter-select" id="filterDateRange">
+                            <option value="7">Últimos 7 días</option>
+                            <option value="30" selected>Últimos 30 días</option>
+                            <option value="90">Últimos 90 días</option>
+                            <option value="365">Último año</option>
+                            <option value="custom">Personalizado</option>
+                        </select>
+                        <button class="btn-secondary" id="btnExportAnalytics">Exportar Reporte</button>
+                    </div>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="section-header">
+                    <h2>Métricas Principales</h2>
+                </div>
+                <div class="stats-grid stats-grid-large">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <h3 class="stat-value" id="statTotalReach">0</h3>
+                            <p class="stat-label">Alcance Total</p>
+                            <span class="stat-change positive">+15.3% vs periodo anterior</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">💬</div>
+                        <div class="stat-content">
+                            <h3 class="stat-value" id="statEngagement">0</h3>
+                            <p class="stat-label">Interacciones</p>
+                            <span class="stat-change positive">+8.7% vs periodo anterior</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">🔗</div>
+                        <div class="stat-content">
+                            <h3 class="stat-value" id="statClicks">0</h3>
+                            <p class="stat-label">Clicks</p>
+                            <span class="stat-change negative">-2.1% vs periodo anterior</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <h3 class="stat-value" id="statConversion">0%</h3>
+                            <p class="stat-label">Tasa de Conversión</p>
+                            <span class="stat-change positive">+4.2% vs periodo anterior</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="section-header">
+                    <h2>Tendencias</h2>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-card chart-large">
+                        <div class="chart-header">
+                            <h3>Alcance e Interacciones</h3>
+                            <select class="chart-filter">
+                                <option value="daily">Diario</option>
+                                <option value="weekly">Semanal</option>
+                                <option value="monthly">Mensual</option>
+                            </select>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="reachEngagementChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-row">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Contenido por Tipo</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="contentTypeChart"></canvas>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #4CAF50;"></span>
+                                <span>Blog Posts</span>
+                                <strong>45%</strong>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #2196F3;"></span>
+                                <span>Social Media</span>
+                                <strong>30%</strong>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #FF9800;"></span>
+                                <span>Email</span>
+                                <strong>15%</strong>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #9C27B0;"></span>
+                                <span>Landing Pages</span>
+                                <strong>10%</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Dispositivos</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="devicesChart"></canvas>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #4CAF50;"></span>
+                                <span>Móvil</span>
+                                <strong>62%</strong>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #2196F3;"></span>
+                                <span>Desktop</span>
+                                <strong>30%</strong>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #FF9800;"></span>
+                                <span>Tablet</span>
+                                <strong>8%</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Performance -->
+                <div class="section-header">
+                    <h2>Rendimiento por Red Social</h2>
+                </div>
+                <div class="social-metrics-grid">
+                    <div class="social-metric-card">
+                        <div class="social-header">
+                            <span class="social-icon">📘</span>
+                            <h3>Facebook</h3>
+                        </div>
+                        <div class="social-stats">
+                            <div class="social-stat">
+                                <span class="stat-label">Seguidores</span>
+                                <span class="stat-value">12,456</span>
+                                <span class="stat-change positive">+234</span>
+                            </div>
+                            <div class="social-stat">
+                                <span class="stat-label">Alcance</span>
+                                <span class="stat-value">45,678</span>
+                                <span class="stat-change positive">+12%</span>
+                            </div>
+                            <div class="social-stat">
+                                <span class="stat-label">Engagement</span>
+                                <span class="stat-value">5.6%</span>
+                                <span class="stat-change positive">+0.8%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-metric-card">
+                        <div class="social-header">
+                            <span class="social-icon">📷</span>
+                            <h3>Instagram</h3>
+                        </div>
+                        <div class="social-stats">
+                            <div class="social-stat">
+                                <span class="stat-label">Seguidores</span>
+                                <span class="stat-value">18,923</span>
+                                <span class="stat-change positive">+456</span>
+                            </div>
+                            <div class="social-stat">
+                                <span class="stat-label">Alcance</span>
+                                <span class="stat-value">67,890</span>
+                                <span class="stat-change positive">+18%</span>
+                            </div>
+                            <div class="social-stat">
+                                <span class="stat-label">Engagement</span>
+                                <span class="stat-value">8.2%</span>
+                                <span class="stat-change positive">+1.2%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-metric-card">
+                        <div class="social-header">
+                            <span class="social-icon">🐦</span>
+                            <h3>Twitter/X</h3>
+                        </div>
+                        <div class="social-stats">
+                            <div class="social-stat">
+                                <span class="stat-label">Seguidores</span>
+                                <span class="stat-value">8,234</span>
+                                <span class="stat-change positive">+123</span>
+                            </div>
+                            <div class="social-stat">
+                                <span class="stat-label">Alcance</span>
+                                <span class="stat-value">23,456</span>
+                                <span class="stat-change negative">-5%</span>
+                            </div>
+                            <div class="social-stat">
+                                <span class="stat-label">Engagement</span>
+                                <span class="stat-value">3.4%</span>
+                                <span class="stat-change negative">-0.3%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-metric-card">
+                        <div class="social-header">
+                            <span class="social-icon">💼</span>
+                            <h3>LinkedIn</h3>
+                        </div>
+                        <div class="social-stats">
+                            <div class="social-stat">
+                                <span class="stat-label">Seguidores</span>
+                                <span class="stat-value">5,678</span>
+                                <span class="stat-change positive">+89</span>
+                            </div>
+                            <div class="social-stat">
+                                <span class="stat-label">Alcance</span>
+                                <span class="stat-value">15,234</span>
+                                <span class="stat-change positive">+9%</span>
+                            </div>
+                            <div class="social-stat">
+                                <span class="stat-label">Engagement</span>
+                                <span class="stat-value">6.1%</span>
+                                <span class="stat-change positive">+0.5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Content -->
+                <div class="section-header">
+                    <h2>Contenido con Mejor Rendimiento</h2>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Ranking</th>
+                                <th>Contenido</th>
+                                <th>Tipo</th>
+                                <th>Empresa</th>
+                                <th>Vistas</th>
+                                <th>Interacciones</th>
+                                <th>Engagement Rate</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topContentTable">
+                            <tr>
+                                <td><span class="ranking-badge gold">1</span></td>
+                                <td>
+                                    <div class="table-cell-content">
+                                        <img src="https://via.placeholder.com/60x40" alt="" class="content-thumbnail">
+                                        <span>Estrategias de Marketing Digital 2024</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-blog">Blog</span></td>
+                                <td>Tech Solutions</td>
+                                <td>15,234</td>
+                                <td>1,456</td>
+                                <td><span class="engagement-rate high">9.6%</span></td>
+                                <td>5 Feb 2024</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ranking-badge silver">2</span></td>
+                                <td>
+                                    <div class="table-cell-content">
+                                        <img src="https://via.placeholder.com/60x40" alt="" class="content-thumbnail">
+                                        <span>Tendencias en Redes Sociales</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-social">Social</span></td>
+                                <td>Innovate Corp</td>
+                                <td>12,890</td>
+                                <td>1,234</td>
+                                <td><span class="engagement-rate high">9.5%</span></td>
+                                <td>8 Feb 2024</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ranking-badge bronze">3</span></td>
+                                <td>
+                                    <div class="table-cell-content">
+                                        <img src="https://via.placeholder.com/60x40" alt="" class="content-thumbnail">
+                                        <span>Guía Completa de SEO</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-blog">Blog</span></td>
+                                <td>Global Services</td>
+                                <td>10,567</td>
+                                <td>987</td>
+                                <td><span class="engagement-rate medium">9.3%</span></td>
+                                <td>2 Feb 2024</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ranking-badge">4</span></td>
+                                <td>
+                                    <div class="table-cell-content">
+                                        <img src="https://via.placeholder.com/60x40" alt="" class="content-thumbnail">
+                                        <span>Email Marketing Tips</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-email">Email</span></td>
+                                <td>Tech Solutions</td>
+                                <td>8,432</td>
+                                <td>745</td>
+                                <td><span class="engagement-rate medium">8.8%</span></td>
+                                <td>10 Feb 2024</td>
+                            </tr>
+                            <tr>
+                                <td><span class="ranking-badge">5</span></td>
+                                <td>
+                                    <div class="table-cell-content">
+                                        <img src="https://via.placeholder.com/60x40" alt="" class="content-thumbnail">
+                                        <span>Análisis de Competencia</span>
+                                    </div>
+                                </td>
+                                <td><span class="badge badge-blog">Blog</span></td>
+                                <td>Innovate Corp</td>
+                                <td>7,891</td>
+                                <td>634</td>
+                                <td><span class="engagement-rate medium">8.0%</span></td>
+                                <td>12 Feb 2024</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Campaign Performance -->
+                <div class="section-header">
+                    <h2>Rendimiento de Campañas</h2>
+                </div>
+                <div class="campaigns-grid">
+                    <div class="campaign-card">
+                        <div class="campaign-header">
+                            <h3>Promoción Febrero</h3>
+                            <span class="badge badge-active">Activa</span>
+                        </div>
+                        <div class="campaign-meta">
+                            <span>Tech Solutions</span>
+                            <span>1-28 Feb 2024</span>
+                        </div>
+                        <div class="campaign-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Impresiones</span>
+                                <span class="metric-value">45,678</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Clicks</span>
+                                <span class="metric-value">3,456</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">CTR</span>
+                                <span class="metric-value">7.6%</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Conversiones</span>
+                                <span class="metric-value">234</span>
+                            </div>
+                        </div>
+                        <div class="campaign-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%;"></div>
+                            </div>
+                            <span class="progress-label">65% completado</span>
+                        </div>
+                    </div>
+
+                    <div class="campaign-card">
+                        <div class="campaign-header">
+                            <h3>Newsletter Mensual</h3>
+                            <span class="badge badge-completed">Completada</span>
+                        </div>
+                        <div class="campaign-meta">
+                            <span>Innovate Corp</span>
+                            <span>Enero 2024</span>
+                        </div>
+                        <div class="campaign-metrics">
+                            <div class="metric">
+                                <span class="metric-label">Enviados</span>
+                                <span class="metric-value">5,000</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Abiertos</span>
+                                <span class="metric-value">2,150</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Open Rate</span>
+                                <span class="metric-value">43%</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Click Rate</span>
+                                <span class="metric-value">12%</span>
+                            </div>
+                        </div>
+                        <div class="campaign-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%;"></div>
+                            </div>
+                            <span class="progress-label">100% completado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.analyticsController) {
+                window.analyticsController.init();
+            }
+        });
+    </script>
+</body>
+</html>
