@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calendario de Eventos - Estepa Marketing">
+    <title>Calendario - Estepa Marketing Admin</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>Estepa Marketing</h2>
+                <p class="sidebar-subtitle">Panel Admin</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="companies.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span>Empresas</span>
+                </a>
+                <a href="content.html" class="nav-item">
+                    <span class="nav-icon">📝</span>
+                    <span>Contenido</span>
+                </a>
+                <a href="media.html" class="nav-item">
+                    <span class="nav-icon">🖼️</span>
+                    <span>Media</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span>Mensajes</span>
+                </a>
+                <a href="faq-generator.html" class="nav-item">
+                    <span class="nav-icon">🤖</span>
+                    <span>FAQs con IA</span>
+                </a>
+                <a href="calendar.html" class="nav-item active">
+                    <span class="nav-icon">📅</span>
+                    <span>Calendario</span>
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Configuración</span>
+                </a>
+                <div class="nav-divider"></div>
+                <a href="../index.html" class="nav-item">
+                    <span class="nav-icon">🌐</span>
+                    <span>Ver Sitio Público</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <p class="user-name" id="userName">Admin User</p>
+                        <p class="user-email" id="userEmail">admin@estepa.com</p>
+                    </div>
+                </div>
+                <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="btn-menu-toggle" id="menuToggle">☰</button>
+                    <h1>Calendario</h1>
+                </div>
+                <div class="header-right">
+                    <button class="btn-notifications">
+                        <span class="notification-icon">🔔</span>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Calendar Controls -->
+                <div class="calendar-controls">
+                    <div class="controls-left">
+                        <button class="btn-primary" id="btnNewEvent">
+                            <span>➕</span>
+                            Nuevo Evento
+                        </button>
+                        <button class="btn-secondary" id="btnToday">Hoy</button>
+                    </div>
+                    <div class="controls-center">
+                        <button class="btn-nav" id="btnPrevPeriod">‹</button>
+                        <h2 id="calendarTitle">Febrero 2024</h2>
+                        <button class="btn-nav" id="btnNextPeriod">›</button>
+                    </div>
+                    <div class="controls-right">
+                        <div class="view-switcher">
+                            <button class="view-btn" data-view="month" id="btnViewMonth">Mes</button>
+                            <button class="view-btn active" data-view="week" id="btnViewWeek">Semana</button>
+                            <button class="view-btn" data-view="day" id="btnViewDay">Día</button>
+                        </div>
+                        <select class="filter-select" id="filterCalendarCompany">
+                            <option value="">Todas las empresas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Calendar Views -->
+                <div class="calendar-container">
+                    <!-- Month View -->
+                    <div class="calendar-view calendar-month" id="monthView" style="display: none;">
+                        <div class="calendar-header">
+                            <div class="calendar-day-name">Dom</div>
+                            <div class="calendar-day-name">Lun</div>
+                            <div class="calendar-day-name">Mar</div>
+                            <div class="calendar-day-name">Mié</div>
+                            <div class="calendar-day-name">Jue</div>
+                            <div class="calendar-day-name">Vie</div>
+                            <div class="calendar-day-name">Sáb</div>
+                        </div>
+                        <div class="calendar-grid" id="monthGrid">
+                            <!-- Calendar days will be generated here -->
+                        </div>
+                    </div>
+
+                    <!-- Week View -->
+                    <div class="calendar-view calendar-week active" id="weekView">
+                        <div class="week-header">
+                            <div class="time-gutter">Hora</div>
+                            <div class="week-day-header">
+                                <div class="week-day-name">Lun 12</div>
+                                <div class="week-day-name">Mar 13</div>
+                                <div class="week-day-name">Mié 14</div>
+                                <div class="week-day-name">Jue 15</div>
+                                <div class="week-day-name">Vie 16</div>
+                                <div class="week-day-name">Sáb 17</div>
+                                <div class="week-day-name">Dom 18</div>
+                            </div>
+                        </div>
+                        <div class="week-grid" id="weekGrid">
+                            <div class="time-column">
+                                <div class="time-slot">00:00</div>
+                                <div class="time-slot">01:00</div>
+                                <div class="time-slot">02:00</div>
+                                <div class="time-slot">03:00</div>
+                                <div class="time-slot">04:00</div>
+                                <div class="time-slot">05:00</div>
+                                <div class="time-slot">06:00</div>
+                                <div class="time-slot">07:00</div>
+                                <div class="time-slot">08:00</div>
+                                <div class="time-slot">09:00</div>
+                                <div class="time-slot">10:00</div>
+                                <div class="time-slot">11:00</div>
+                                <div class="time-slot">12:00</div>
+                                <div class="time-slot">13:00</div>
+                                <div class="time-slot">14:00</div>
+                                <div class="time-slot">15:00</div>
+                                <div class="time-slot">16:00</div>
+                                <div class="time-slot">17:00</div>
+                                <div class="time-slot">18:00</div>
+                                <div class="time-slot">19:00</div>
+                                <div class="time-slot">20:00</div>
+                                <div class="time-slot">21:00</div>
+                                <div class="time-slot">22:00</div>
+                                <div class="time-slot">23:00</div>
+                            </div>
+                            <div class="events-column" id="weekEventsColumn">
+                                <!-- Sample events -->
+                                <div class="calendar-event" style="top: 600px; height: 90px;" data-event-id="1">
+                                    <div class="event-time">10:00 - 11:30</div>
+                                    <div class="event-title">Reunión con Cliente</div>
+                                    <div class="event-company">Tech Solutions</div>
+                                </div>
+                                <div class="calendar-event event-content" style="top: 900px; height: 60px;" data-event-id="2">
+                                    <div class="event-time">15:00</div>
+                                    <div class="event-title">Publicación Instagram</div>
+                                    <div class="event-company">Innovate Corp</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day View -->
+                    <div class="calendar-view calendar-day" id="dayView" style="display: none;">
+                        <div class="day-header">
+                            <div class="time-gutter">Hora</div>
+                            <div class="day-title">
+                                <h3 id="dayViewDate">Lunes, 12 de Febrero 2024</h3>
+                            </div>
+                        </div>
+                        <div class="day-grid" id="dayGrid">
+                            <div class="time-column">
+                                <div class="time-slot">00:00</div>
+                                <div class="time-slot">01:00</div>
+                                <div class="time-slot">02:00</div>
+                                <div class="time-slot">03:00</div>
+                                <div class="time-slot">04:00</div>
+                                <div class="time-slot">05:00</div>
+                                <div class="time-slot">06:00</div>
+                                <div class="time-slot">07:00</div>
+                                <div class="time-slot">08:00</div>
+                                <div class="time-slot">09:00</div>
+                                <div class="time-slot">10:00</div>
+                                <div class="time-slot">11:00</div>
+                                <div class="time-slot">12:00</div>
+                                <div class="time-slot">13:00</div>
+                                <div class="time-slot">14:00</div>
+                                <div class="time-slot">15:00</div>
+                                <div class="time-slot">16:00</div>
+                                <div class="time-slot">17:00</div>
+                                <div class="time-slot">18:00</div>
+                                <div class="time-slot">19:00</div>
+                                <div class="time-slot">20:00</div>
+                                <div class="time-slot">21:00</div>
+                                <div class="time-slot">22:00</div>
+                                <div class="time-slot">23:00</div>
+                            </div>
+                            <div class="events-column" id="dayEventsColumn">
+                                <!-- Events will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events Sidebar -->
+                <div class="calendar-sidebar">
+                    <div class="sidebar-card">
+                        <h3>Próximos Eventos</h3>
+                        <div class="upcoming-events-list" id="upcomingEventsList">
+                            <div class="upcoming-event">
+                                <div class="event-indicator event-meeting"></div>
+                                <div class="event-details">
+                                    <p class="event-title">Reunión con Cliente</p>
+                                    <p class="event-time">Hoy, 10:00 AM</p>
+                                    <p class="event-company">Tech Solutions</p>
+                                </div>
+                            </div>
+                            <div class="upcoming-event">
+                                <div class="event-indicator event-content"></div>
+                                <div class="event-details">
+                                    <p class="event-title">Publicación Instagram</p>
+                                    <p class="event-time">Hoy, 3:00 PM</p>
+                                    <p class="event-company">Innovate Corp</p>
+                                </div>
+                            </div>
+                            <div class="upcoming-event">
+                                <div class="event-indicator event-campaign"></div>
+                                <div class="event-details">
+                                    <p class="event-title">Campaña Email</p>
+                                    <p class="event-time">Mañana, 9:00 AM</p>
+                                    <p class="event-company">Global Services</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3>Leyenda</h3>
+                        <div class="legend-list">
+                            <div class="legend-item">
+                                <span class="legend-color event-meeting"></span>
+                                <span>Reuniones</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color event-content"></span>
+                                <span>Publicaciones</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color event-campaign"></span>
+                                <span>Campañas</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color event-deadline"></span>
+                                <span>Deadlines</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color event-other"></span>
+                                <span>Otros</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Event Modal -->
+    <div class="modal" id="eventModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="eventModalTitle">Nuevo Evento</h2>
+                    <button class="modal-close" id="closeEventModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="eventForm">
+                        <input type="hidden" id="eventId">
+                        
+                        <div class="form-group">
+                            <label for="eventTitle">Título del Evento *</label>
+                            <input type="text" id="eventTitle" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventCompany">Empresa</label>
+                            <select id="eventCompany" class="form-control">
+                                <option value="">Sin empresa</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventType">Tipo de Evento *</label>
+                            <select id="eventType" class="form-control" required>
+                                <option value="meeting">Reunión</option>
+                                <option value="content">Publicación de Contenido</option>
+                                <option value="campaign">Campaña</option>
+                                <option value="deadline">Deadline</option>
+                                <option value="other">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="eventStartDate">Fecha de Inicio *</label>
+                                <input type="date" id="eventStartDate" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventStartTime">Hora de Inicio *</label>
+                                <input type="time" id="eventStartTime" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="eventEndDate">Fecha de Fin</label>
+                                <input type="date" id="eventEndDate" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="eventEndTime">Hora de Fin</label>
+                                <input type="time" id="eventEndTime" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventLocation">Ubicación</label>
+                            <input type="text" id="eventLocation" class="form-control" placeholder="Oficina, Zoom, etc.">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventDescription">Descripción</label>
+                            <textarea id="eventDescription" class="form-control" rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="eventReminder">
+                                <span>Enviar recordatorio</span>
+                            </label>
+                        </div>
+
+                        <div class="form-group" id="reminderTimeGroup" style="display: none;">
+                            <label for="reminderTime">Tiempo de recordatorio</label>
+                            <select id="reminderTime" class="form-control">
+                                <option value="15">15 minutos antes</option>
+                                <option value="30">30 minutos antes</option>
+                                <option value="60">1 hora antes</option>
+                                <option value="1440">1 día antes</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-danger" id="btnDeleteEvent" style="margin-right: auto; display: none;">Eliminar</button>
+                    <button type="button" class="btn-secondary" id="btnCancelEvent">Cancelar</button>
+                    <button type="submit" form="eventForm" class="btn-primary" id="btnSaveEvent">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.calendarController) {
+                window.calendarController.init();
+            }
+
+            // View switching
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const view = this.dataset.view;
+                    
+                    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.calendar-view').forEach(v => v.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    document.getElementById(view + 'View').classList.add('active');
+                });
+            });
+
+            // Event reminder toggle
+            document.getElementById('eventReminder')?.addEventListener('change', function() {
+                const reminderGroup = document.getElementById('reminderTimeGroup');
+                reminderGroup.style.display = this.checked ? 'block' : 'none';
+            });
+
+            // Event click handling
+            document.querySelectorAll('.calendar-event').forEach(event => {
+                event.addEventListener('click', function() {
+                    const eventId = this.dataset.eventId;
+                    if (window.calendarController && window.calendarController.showEventDetails) {
+                        window.calendarController.showEventDetails(eventId);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

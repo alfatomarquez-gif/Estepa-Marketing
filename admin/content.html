@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gestión de Contenido - Estepa Marketing">
+    <title>Contenido - Estepa Marketing Admin</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>Estepa Marketing</h2>
+                <p class="sidebar-subtitle">Panel Admin</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="companies.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span>Empresas</span>
+                </a>
+                <a href="content.html" class="nav-item active">
+                    <span class="nav-icon">📝</span>
+                    <span>Contenido</span>
+                </a>
+                <a href="media.html" class="nav-item">
+                    <span class="nav-icon">🖼️</span>
+                    <span>Media</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span>Mensajes</span>
+                </a>
+                <a href="faq-generator.html" class="nav-item">
+                    <span class="nav-icon">🤖</span>
+                    <span>FAQs con IA</span>
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span>Calendario</span>
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Configuración</span>
+                </a>
+                <div class="nav-divider"></div>
+                <a href="../index.html" class="nav-item">
+                    <span class="nav-icon">🌐</span>
+                    <span>Ver Sitio Público</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <p class="user-name" id="userName">Admin User</p>
+                        <p class="user-email" id="userEmail">admin@estepa.com</p>
+                    </div>
+                </div>
+                <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="btn-menu-toggle" id="menuToggle">☰</button>
+                    <h1>Contenido</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="search" placeholder="Buscar contenido..." class="search-input" id="searchContent">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <button class="btn-notifications">
+                        <span class="notification-icon">🔔</span>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Actions Bar -->
+                <div class="actions-bar">
+                    <button class="btn-primary" id="btnNewContent">
+                        <span>➕</span>
+                        Nuevo Contenido
+                    </button>
+                    <div class="actions-right">
+                        <select class="filter-select" id="filterCompany">
+                            <option value="">Todas las empresas</option>
+                        </select>
+                        <select class="filter-select" id="filterType">
+                            <option value="">Todos los tipos</option>
+                            <option value="blog">Blog</option>
+                            <option value="social">Social Media</option>
+                            <option value="email">Email</option>
+                            <option value="landing">Landing Page</option>
+                        </select>
+                        <select class="filter-select" id="filterStatus">
+                            <option value="">Todos los estados</option>
+                            <option value="draft">Borrador</option>
+                            <option value="published">Publicado</option>
+                            <option value="scheduled">Programado</option>
+                            <option value="archived">Archivado</option>
+                        </select>
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="grid" id="btnViewGrid">⊞</button>
+                            <button class="view-btn" data-view="list" id="btnViewList">☰</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Grid View -->
+                <div class="content-grid-view active" id="contentGridView">
+                    <div class="content-grid-container" id="contentGridContainer">
+                        <!-- Sample card -->
+                        <div class="content-card">
+                            <div class="content-card-image">
+                                <img src="https://via.placeholder.com/400x250" alt="Content">
+                                <span class="content-badge badge-published">Publicado</span>
+                            </div>
+                            <div class="content-card-body">
+                                <div class="content-meta">
+                                    <span class="content-type">📝 Blog</span>
+                                    <span class="content-date">10 Feb 2024</span>
+                                </div>
+                                <h3 class="content-title">Estrategias de Marketing Digital para 2024</h3>
+                                <p class="content-excerpt">Descubre las últimas tendencias y estrategias efectivas para impulsar tu presencia digital...</p>
+                                <div class="content-footer">
+                                    <div class="content-company">
+                                        <span class="company-tag">Tech Solutions</span>
+                                    </div>
+                                    <div class="content-actions">
+                                        <button class="btn-icon" title="Editar" data-action="edit">✏️</button>
+                                        <button class="btn-icon" title="Duplicar" data-action="duplicate">📋</button>
+                                        <button class="btn-icon" title="Eliminar" data-action="delete">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content List View -->
+                <div class="content-list-view" id="contentListView">
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="selectAll"></th>
+                                    <th>Título</th>
+                                    <th>Empresa</th>
+                                    <th>Tipo</th>
+                                    <th>Estado</th>
+                                    <th>Fecha</th>
+                                    <th>Autor</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contentTableBody">
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>
+                                        <div class="table-cell-content">
+                                            <img src="https://via.placeholder.com/60x40" alt="" class="content-thumbnail">
+                                            <span>Estrategias de Marketing Digital para 2024</span>
+                                        </div>
+                                    </td>
+                                    <td>Tech Solutions</td>
+                                    <td><span class="badge badge-blog">Blog</span></td>
+                                    <td><span class="badge badge-published">Publicado</span></td>
+                                    <td>10 Feb 2024</td>
+                                    <td>Admin User</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" title="Ver" data-action="view">👁️</button>
+                                            <button class="btn-icon" title="Editar" data-action="edit">✏️</button>
+                                            <button class="btn-icon" title="Eliminar" data-action="delete">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn" id="btnPrevPage" disabled>Anterior</button>
+                    <div class="pagination-info">
+                        <span>Página <span id="currentPage">1</span> de <span id="totalPages">1</span></span>
+                    </div>
+                    <button class="pagination-btn" id="btnNextPage">Siguiente</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Content Modal -->
+    <div class="modal" id="contentModal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Nuevo Contenido</h2>
+                    <button class="modal-close" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="contentForm">
+                        <input type="hidden" id="contentId">
+                        
+                        <div class="form-section">
+                            <h3>Información Básica</h3>
+                            <div class="form-group">
+                                <label for="contentTitle">Título *</label>
+                                <input type="text" id="contentTitle" class="form-control" required>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="contentCompany">Empresa *</label>
+                                    <select id="contentCompany" class="form-control" required>
+                                        <option value="">Seleccionar empresa...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contentType">Tipo de Contenido *</label>
+                                    <select id="contentType" class="form-control" required>
+                                        <option value="blog">Blog Post</option>
+                                        <option value="social">Social Media</option>
+                                        <option value="email">Email Marketing</option>
+                                        <option value="landing">Landing Page</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Contenido</h3>
+                            <div class="form-group">
+                                <label for="contentExcerpt">Extracto/Descripción Corta</label>
+                                <textarea id="contentExcerpt" class="form-control" rows="2"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="contentBody">Contenido *</label>
+                                <textarea id="contentBody" class="form-control" rows="10" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Media</h3>
+                            <div class="form-group">
+                                <label for="contentImage">Imagen Principal</label>
+                                <input type="file" id="contentImage" class="form-control" accept="image/*">
+                                <div class="image-preview" id="imagePreview"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>SEO</h3>
+                            <div class="form-group">
+                                <label for="contentSeoTitle">Título SEO</label>
+                                <input type="text" id="contentSeoTitle" class="form-control" maxlength="60">
+                                <small>Recomendado: 50-60 caracteres</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="contentSeoDescription">Meta Descripción</label>
+                                <textarea id="contentSeoDescription" class="form-control" rows="2" maxlength="160"></textarea>
+                                <small>Recomendado: 150-160 caracteres</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="contentTags">Etiquetas (separadas por comas)</label>
+                                <input type="text" id="contentTags" class="form-control" placeholder="marketing, digital, estrategia">
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Publicación</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="contentStatus">Estado *</label>
+                                    <select id="contentStatus" class="form-control" required>
+                                        <option value="draft">Borrador</option>
+                                        <option value="published">Publicar Ahora</option>
+                                        <option value="scheduled">Programar</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" id="scheduleDateGroup" style="display: none;">
+                                    <label for="contentScheduleDate">Fecha de Publicación</label>
+                                    <input type="datetime-local" id="contentScheduleDate" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" id="btnCancelModal">Cancelar</button>
+                    <button type="submit" form="contentForm" class="btn-primary" id="btnSaveContent">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.contentController) {
+                window.contentController.init();
+            }
+            
+            // View toggle
+            document.getElementById('btnViewGrid')?.addEventListener('click', function() {
+                document.getElementById('contentGridView').classList.add('active');
+                document.getElementById('contentListView').classList.remove('active');
+                this.classList.add('active');
+                document.getElementById('btnViewList').classList.remove('active');
+            });
+            
+            document.getElementById('btnViewList')?.addEventListener('click', function() {
+                document.getElementById('contentListView').classList.add('active');
+                document.getElementById('contentGridView').classList.remove('active');
+                this.classList.add('active');
+                document.getElementById('btnViewGrid').classList.remove('active');
+            });
+
+            // Show/hide schedule date
+            document.getElementById('contentStatus')?.addEventListener('change', function() {
+                const scheduleDateGroup = document.getElementById('scheduleDateGroup');
+                if (this.value === 'scheduled') {
+                    scheduleDateGroup.style.display = 'block';
+                } else {
+                    scheduleDateGroup.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

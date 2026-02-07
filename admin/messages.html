@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de Mensajería - Estepa Marketing">
+    <title>Mensajes - Estepa Marketing Admin</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>Estepa Marketing</h2>
+                <p class="sidebar-subtitle">Panel Admin</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="companies.html" class="nav-item">
+                    <span class="nav-icon">🏢</span>
+                    <span>Empresas</span>
+                </a>
+                <a href="content.html" class="nav-item">
+                    <span class="nav-icon">📝</span>
+                    <span>Contenido</span>
+                </a>
+                <a href="media.html" class="nav-item">
+                    <span class="nav-icon">🖼️</span>
+                    <span>Media</span>
+                </a>
+                <a href="messages.html" class="nav-item active">
+                    <span class="nav-icon">💬</span>
+                    <span>Mensajes</span>
+                </a>
+                <a href="faq-generator.html" class="nav-item">
+                    <span class="nav-icon">🤖</span>
+                    <span>FAQs con IA</span>
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span>Calendario</span>
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Configuración</span>
+                </a>
+                <div class="nav-divider"></div>
+                <a href="../index.html" class="nav-item">
+                    <span class="nav-icon">🌐</span>
+                    <span>Ver Sitio Público</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <p class="user-name" id="userName">Admin User</p>
+                        <p class="user-email" id="userEmail">admin@estepa.com</p>
+                    </div>
+                </div>
+                <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="btn-menu-toggle" id="menuToggle">☰</button>
+                    <h1>Mensajes</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="search" placeholder="Buscar mensajes..." class="search-input" id="searchMessages">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <button class="btn-notifications">
+                        <span class="notification-icon">🔔</span>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Message Tabs -->
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="whatsapp" id="tabWhatsApp">
+                        <span>📱</span> WhatsApp
+                    </button>
+                    <button class="tab-btn" data-tab="email" id="tabEmail">
+                        <span>📧</span> Email
+                    </button>
+                    <button class="tab-btn" data-tab="templates" id="tabTemplates">
+                        <span>📄</span> Plantillas
+                    </button>
+                    <button class="tab-btn" data-tab="history" id="tabHistory">
+                        <span>📋</span> Historial
+                    </button>
+                </div>
+
+                <!-- WhatsApp Tab -->
+                <div class="tab-content active" id="whatsappContent">
+                    <div class="actions-bar">
+                        <button class="btn-primary" id="btnNewWhatsApp">
+                            <span>➕</span>
+                            Nueva Campaña WhatsApp
+                        </button>
+                    </div>
+
+                    <div class="message-composer">
+                        <div class="composer-section">
+                            <h3>Configuración de Campaña</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="whatsappCompany">Empresa</label>
+                                    <select id="whatsappCompany" class="form-control">
+                                        <option value="">Seleccionar empresa...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="whatsappTemplate">Plantilla</label>
+                                    <select id="whatsappTemplate" class="form-control">
+                                        <option value="">Sin plantilla</option>
+                                        <option value="1">Bienvenida</option>
+                                        <option value="2">Promoción</option>
+                                        <option value="3">Recordatorio</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="composer-section">
+                            <h3>Destinatarios</h3>
+                            <div class="form-group">
+                                <label>Método de Selección</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="recipientMethod" value="manual" checked>
+                                        <span>Manual</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="recipientMethod" value="list">
+                                        <span>Lista de Contactos</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="recipientMethod" value="import">
+                                        <span>Importar CSV</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="whatsappRecipients">Números de Teléfono (uno por línea)</label>
+                                <textarea id="whatsappRecipients" class="form-control" rows="5" placeholder="+34600123456&#10;+34600123457&#10;+34600123458"></textarea>
+                                <small>Formato: +34600123456</small>
+                            </div>
+                            <div class="recipients-count">
+                                <span id="recipientCount">0 destinatarios</span>
+                            </div>
+                        </div>
+
+                        <div class="composer-section">
+                            <h3>Mensaje</h3>
+                            <div class="form-group">
+                                <label for="whatsappMessage">Contenido del Mensaje</label>
+                                <textarea id="whatsappMessage" class="form-control" rows="6" maxlength="1000" placeholder="Escribe tu mensaje aquí..."></textarea>
+                                <div class="message-meta">
+                                    <small><span id="charCount">0</span>/1000 caracteres</small>
+                                    <button type="button" class="btn-link" id="btnAddEmoji">😊 Añadir Emoji</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Adjuntar Media (opcional)</label>
+                                <input type="file" id="whatsappMedia" class="form-control" accept="image/*,video/*,.pdf">
+                            </div>
+                        </div>
+
+                        <div class="composer-section">
+                            <h3>Programación</h3>
+                            <div class="form-group">
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="sendTime" value="now" checked>
+                                        <span>Enviar Ahora</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="sendTime" value="schedule">
+                                        <span>Programar Envío</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="scheduleDateGroup" style="display: none;">
+                                <label for="whatsappScheduleDate">Fecha y Hora de Envío</label>
+                                <input type="datetime-local" id="whatsappScheduleDate" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="composer-actions">
+                            <button type="button" class="btn-secondary" id="btnSaveDraft">Guardar Borrador</button>
+                            <button type="button" class="btn-primary" id="btnSendWhatsApp">Enviar Campaña</button>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Preview -->
+                    <div class="message-preview">
+                        <h3>Vista Previa</h3>
+                        <div class="whatsapp-preview">
+                            <div class="whatsapp-bubble">
+                                <p id="previewMessage">Tu mensaje aparecerá aquí...</p>
+                                <span class="message-time">Ahora</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Tab -->
+                <div class="tab-content" id="emailContent">
+                    <div class="actions-bar">
+                        <button class="btn-primary" id="btnNewEmail">
+                            <span>➕</span>
+                            Nueva Campaña Email
+                        </button>
+                    </div>
+
+                    <div class="message-composer">
+                        <div class="composer-section">
+                            <h3>Configuración de Campaña</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="emailCompany">Empresa</label>
+                                    <select id="emailCompany" class="form-control">
+                                        <option value="">Seleccionar empresa...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emailTemplate">Plantilla</label>
+                                    <select id="emailTemplate" class="form-control">
+                                        <option value="">Sin plantilla</option>
+                                        <option value="newsletter">Newsletter</option>
+                                        <option value="promotion">Promoción</option>
+                                        <option value="announcement">Anuncio</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="composer-section">
+                            <h3>Destinatarios</h3>
+                            <div class="form-group">
+                                <label for="emailRecipients">Direcciones de Email (separadas por comas o líneas)</label>
+                                <textarea id="emailRecipients" class="form-control" rows="4" placeholder="email1@ejemplo.com, email2@ejemplo.com"></textarea>
+                            </div>
+                            <div class="recipients-count">
+                                <span id="emailRecipientCount">0 destinatarios</span>
+                            </div>
+                        </div>
+
+                        <div class="composer-section">
+                            <h3>Contenido del Email</h3>
+                            <div class="form-group">
+                                <label for="emailSubject">Asunto *</label>
+                                <input type="text" id="emailSubject" class="form-control" placeholder="Asunto del email">
+                            </div>
+                            <div class="form-group">
+                                <label for="emailPreheader">Pre-encabezado (opcional)</label>
+                                <input type="text" id="emailPreheader" class="form-control" placeholder="Texto que aparece después del asunto">
+                            </div>
+                            <div class="form-group">
+                                <label for="emailBody">Cuerpo del Mensaje *</label>
+                                <textarea id="emailBody" class="form-control" rows="10" placeholder="Contenido del email (HTML permitido)"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Archivos Adjuntos</label>
+                                <input type="file" id="emailAttachments" class="form-control" multiple>
+                            </div>
+                        </div>
+
+                        <div class="composer-section">
+                            <h3>Opciones Avanzadas</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="emailFromName">Nombre del Remitente</label>
+                                    <input type="text" id="emailFromName" class="form-control" placeholder="Estepa Marketing">
+                                </div>
+                                <div class="form-group">
+                                    <label for="emailReplyTo">Email de Respuesta</label>
+                                    <input type="email" id="emailReplyTo" class="form-control" placeholder="respuestas@estepa.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="emailTrackOpens">
+                                    <span>Rastrear Aperturas</span>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="emailTrackClicks">
+                                    <span>Rastrear Clicks</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="composer-section">
+                            <h3>Programación</h3>
+                            <div class="form-group">
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="emailSendTime" value="now" checked>
+                                        <span>Enviar Ahora</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="emailSendTime" value="schedule">
+                                        <span>Programar Envío</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="emailScheduleDateGroup" style="display: none;">
+                                <label for="emailScheduleDate">Fecha y Hora de Envío</label>
+                                <input type="datetime-local" id="emailScheduleDate" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="composer-actions">
+                            <button type="button" class="btn-secondary" id="btnSaveEmailDraft">Guardar Borrador</button>
+                            <button type="button" class="btn-secondary" id="btnTestEmail">Enviar Prueba</button>
+                            <button type="button" class="btn-primary" id="btnSendEmail">Enviar Campaña</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Templates Tab -->
+                <div class="tab-content" id="templatesContent">
+                    <div class="actions-bar">
+                        <button class="btn-primary" id="btnNewTemplate">
+                            <span>➕</span>
+                            Nueva Plantilla
+                        </button>
+                        <div class="actions-right">
+                            <select class="filter-select" id="filterTemplateType">
+                                <option value="">Todos los tipos</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="email">Email</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="templates-grid" id="templatesGrid">
+                        <div class="template-card">
+                            <div class="template-header">
+                                <h3>Bienvenida</h3>
+                                <span class="badge badge-whatsapp">WhatsApp</span>
+                            </div>
+                            <div class="template-body">
+                                <p>¡Hola! Bienvenido a {empresa}. Estamos aquí para ayudarte con...</p>
+                            </div>
+                            <div class="template-footer">
+                                <button class="btn-icon" title="Usar" data-action="use">✅</button>
+                                <button class="btn-icon" title="Editar" data-action="edit">✏️</button>
+                                <button class="btn-icon" title="Eliminar" data-action="delete">🗑️</button>
+                            </div>
+                        </div>
+
+                        <div class="template-card">
+                            <div class="template-header">
+                                <h3>Newsletter Mensual</h3>
+                                <span class="badge badge-email">Email</span>
+                            </div>
+                            <div class="template-body">
+                                <p>Asunto: Novedades de {mes} - {empresa}<br>Descubre las últimas actualizaciones...</p>
+                            </div>
+                            <div class="template-footer">
+                                <button class="btn-icon" title="Usar" data-action="use">✅</button>
+                                <button class="btn-icon" title="Editar" data-action="edit">✏️</button>
+                                <button class="btn-icon" title="Eliminar" data-action="delete">🗑️</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History Tab -->
+                <div class="tab-content" id="historyContent">
+                    <div class="actions-bar">
+                        <div class="actions-right">
+                            <select class="filter-select" id="filterHistoryType">
+                                <option value="">Todos los tipos</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="email">Email</option>
+                            </select>
+                            <select class="filter-select" id="filterHistoryStatus">
+                                <option value="">Todos los estados</option>
+                                <option value="sent">Enviado</option>
+                                <option value="scheduled">Programado</option>
+                                <option value="draft">Borrador</option>
+                                <option value="failed">Fallido</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Campaña</th>
+                                    <th>Empresa</th>
+                                    <th>Destinatarios</th>
+                                    <th>Estado</th>
+                                    <th>Fecha</th>
+                                    <th>Tasa de Entrega</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyTableBody">
+                                <tr>
+                                    <td><span class="badge badge-whatsapp">WhatsApp</span></td>
+                                    <td>Promoción Febrero</td>
+                                    <td>Tech Solutions</td>
+                                    <td>150</td>
+                                    <td><span class="badge badge-sent">Enviado</span></td>
+                                    <td>10 Feb 2024, 15:30</td>
+                                    <td>
+                                        <div class="delivery-rate">
+                                            <span>98%</span>
+                                            <small>(147/150)</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" title="Ver Detalles" data-action="view">👁️</button>
+                                            <button class="btn-icon" title="Duplicar" data-action="duplicate">📋</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-email">Email</span></td>
+                                    <td>Newsletter Enero</td>
+                                    <td>Innovate Corp</td>
+                                    <td>500</td>
+                                    <td><span class="badge badge-sent">Enviado</span></td>
+                                    <td>5 Feb 2024, 09:00</td>
+                                    <td>
+                                        <div class="delivery-rate">
+                                            <span>95%</span>
+                                            <small>(475/500)</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" title="Ver Detalles" data-action="view">👁️</button>
+                                            <button class="btn-icon" title="Duplicar" data-action="duplicate">📋</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination">
+                        <button class="pagination-btn" id="btnHistoryPrevPage" disabled>Anterior</button>
+                        <div class="pagination-info">
+                            <span>Página <span id="historyCurrentPage">1</span> de <span id="historyTotalPages">1</span></span>
+                        </div>
+                        <button class="pagination-btn" id="btnHistoryNextPage">Siguiente</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.messagesController) {
+                window.messagesController.init();
+            }
+
+            // Tab switching
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabName = this.dataset.tab;
+                    
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    document.getElementById(tabName + 'Content').classList.add('active');
+                });
+            });
+
+            // Character counter
+            document.getElementById('whatsappMessage')?.addEventListener('input', function() {
+                document.getElementById('charCount').textContent = this.value.length;
+                document.getElementById('previewMessage').textContent = this.value || 'Tu mensaje aparecerá aquí...';
+            });
+
+            // Schedule date visibility
+            document.querySelectorAll('input[name="sendTime"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const group = document.getElementById('scheduleDateGroup');
+                    group.style.display = this.value === 'schedule' ? 'block' : 'none';
+                });
+            });
+
+            document.querySelectorAll('input[name="emailSendTime"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const group = document.getElementById('emailScheduleDateGroup');
+                    group.style.display = this.value === 'schedule' ? 'block' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

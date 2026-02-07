@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gestión de Empresas - Estepa Marketing">
+    <title>Empresas - Estepa Marketing Admin</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>Estepa Marketing</h2>
+                <p class="sidebar-subtitle">Panel Admin</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="companies.html" class="nav-item active">
+                    <span class="nav-icon">🏢</span>
+                    <span>Empresas</span>
+                </a>
+                <a href="content.html" class="nav-item">
+                    <span class="nav-icon">📝</span>
+                    <span>Contenido</span>
+                </a>
+                <a href="media.html" class="nav-item">
+                    <span class="nav-icon">🖼️</span>
+                    <span>Media</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="nav-icon">💬</span>
+                    <span>Mensajes</span>
+                </a>
+                <a href="faq-generator.html" class="nav-item">
+                    <span class="nav-icon">🤖</span>
+                    <span>FAQs con IA</span>
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <span class="nav-icon">📅</span>
+                    <span>Calendario</span>
+                </a>
+                <a href="analytics.html" class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Configuración</span>
+                </a>
+                <div class="nav-divider"></div>
+                <a href="../index.html" class="nav-item">
+                    <span class="nav-icon">🌐</span>
+                    <span>Ver Sitio Público</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <p class="user-name" id="userName">Admin User</p>
+                        <p class="user-email" id="userEmail">admin@estepa.com</p>
+                    </div>
+                </div>
+                <button class="btn-logout" id="btnLogout">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-left">
+                    <button class="btn-menu-toggle" id="menuToggle">☰</button>
+                    <h1>Empresas</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="search" placeholder="Buscar empresas..." class="search-input" id="searchCompanies">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <button class="btn-notifications">
+                        <span class="notification-icon">🔔</span>
+                        <span class="notification-badge">3</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Actions Bar -->
+                <div class="actions-bar">
+                    <button class="btn-primary" id="btnNewCompany">
+                        <span>➕</span>
+                        Nueva Empresa
+                    </button>
+                    <div class="actions-right">
+                        <select class="filter-select" id="filterStatus">
+                            <option value="">Todos los estados</option>
+                            <option value="active">Activos</option>
+                            <option value="inactive">Inactivos</option>
+                            <option value="pending">Pendiente</option>
+                        </select>
+                        <select class="filter-select" id="filterPlan">
+                            <option value="">Todos los planes</option>
+                            <option value="basic">Básico</option>
+                            <option value="professional">Profesional</option>
+                            <option value="enterprise">Enterprise</option>
+                        </select>
+                        <button class="btn-secondary" id="btnExport">Exportar</button>
+                    </div>
+                </div>
+
+                <!-- Companies Table -->
+                <div class="table-container">
+                    <table class="data-table" id="companiesTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" id="selectAll">
+                                </th>
+                                <th>Empresa</th>
+                                <th>Contacto</th>
+                                <th>Plan</th>
+                                <th>Estado</th>
+                                <th>Fecha Registro</th>
+                                <th>Última Actividad</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="companiesTableBody">
+                            <!-- Sample row -->
+                            <tr>
+                                <td><input type="checkbox" class="row-checkbox"></td>
+                                <td>
+                                    <div class="table-cell-company">
+                                        <div class="company-logo">TS</div>
+                                        <div>
+                                            <p class="company-name">Tech Solutions S.A.</p>
+                                            <p class="company-website">techsolutions.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="contact-name">Juan Pérez</p>
+                                    <p class="contact-email">juan@techsolutions.com</p>
+                                    <p class="contact-phone">+34 600 123 456</p>
+                                </td>
+                                <td><span class="badge badge-professional">Profesional</span></td>
+                                <td><span class="badge badge-active">Activo</span></td>
+                                <td>15/01/2024</td>
+                                <td>Hace 2 horas</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon" title="Ver" data-action="view">👁️</button>
+                                        <button class="btn-icon" title="Editar" data-action="edit">✏️</button>
+                                        <button class="btn-icon" title="Eliminar" data-action="delete">🗑️</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn" id="btnPrevPage" disabled>Anterior</button>
+                    <div class="pagination-info">
+                        <span>Página <span id="currentPage">1</span> de <span id="totalPages">1</span></span>
+                    </div>
+                    <button class="pagination-btn" id="btnNextPage">Siguiente</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Company Modal -->
+    <div class="modal" id="companyModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Nueva Empresa</h2>
+                    <button class="modal-close" id="closeModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="companyForm">
+                        <input type="hidden" id="companyId">
+                        
+                        <div class="form-section">
+                            <h3>Información de la Empresa</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="companyName">Nombre de la Empresa *</label>
+                                    <input type="text" id="companyName" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="companyWebsite">Sitio Web</label>
+                                    <input type="url" id="companyWebsite" class="form-control" placeholder="https://ejemplo.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="companyDescription">Descripción</label>
+                                <textarea id="companyDescription" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="companyIndustry">Industria</label>
+                                    <select id="companyIndustry" class="form-control">
+                                        <option value="">Seleccionar...</option>
+                                        <option value="technology">Tecnología</option>
+                                        <option value="retail">Retail</option>
+                                        <option value="services">Servicios</option>
+                                        <option value="manufacturing">Manufactura</option>
+                                        <option value="healthcare">Salud</option>
+                                        <option value="other">Otro</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="companySize">Tamaño</label>
+                                    <select id="companySize" class="form-control">
+                                        <option value="">Seleccionar...</option>
+                                        <option value="1-10">1-10 empleados</option>
+                                        <option value="11-50">11-50 empleados</option>
+                                        <option value="51-200">51-200 empleados</option>
+                                        <option value="201-500">201-500 empleados</option>
+                                        <option value="500+">500+ empleados</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Contacto Principal</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="contactName">Nombre Completo *</label>
+                                    <input type="text" id="contactName" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Email *</label>
+                                    <input type="email" id="contactEmail" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="contactPhone">Teléfono</label>
+                                    <input type="tel" id="contactPhone" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactPosition">Cargo</label>
+                                    <input type="text" id="contactPosition" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Plan y Estado</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="companyPlan">Plan *</label>
+                                    <select id="companyPlan" class="form-control" required>
+                                        <option value="basic">Básico</option>
+                                        <option value="professional">Profesional</option>
+                                        <option value="enterprise">Enterprise</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="companyStatus">Estado *</label>
+                                    <select id="companyStatus" class="form-control" required>
+                                        <option value="active">Activo</option>
+                                        <option value="inactive">Inactivo</option>
+                                        <option value="pending">Pendiente</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Redes Sociales</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="socialFacebook">Facebook</label>
+                                    <input type="url" id="socialFacebook" class="form-control" placeholder="https://facebook.com/...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="socialInstagram">Instagram</label>
+                                    <input type="url" id="socialInstagram" class="form-control" placeholder="https://instagram.com/...">
+                                </div>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="socialTwitter">Twitter/X</label>
+                                    <input type="url" id="socialTwitter" class="form-control" placeholder="https://twitter.com/...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="socialLinkedin">LinkedIn</label>
+                                    <input type="url" id="socialLinkedin" class="form-control" placeholder="https://linkedin.com/...">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" id="btnCancelModal">Cancelar</button>
+                    <button type="submit" form="companyForm" class="btn-primary" id="btnSaveCompany">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.companiesController) {
+                window.companiesController.init();
+            }
+        });
+    </script>
+</body>
+</html>
