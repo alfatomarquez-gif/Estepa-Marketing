@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Planes y precios de Estepa Marketing - Encuentra el plan perfecto para tu negocio">
+  <title>Precios - Estepa Marketing</title>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Saltar al contenido</a>
+  <div id="scroll-progress"></div>
+  
+  <header class="header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">EM</div>
+        <span>Estepa Marketing</span>
+      </a>
+      
+      <nav class="nav">
+        <ul class="nav-menu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+          <li class="nav-item"><a href="features.html" class="nav-link">Funcionalidades</a></li>
+          <li class="nav-item"><a href="platform.html" class="nav-link">Plataforma</a></li>
+          <li class="nav-item"><a href="pricing.html" class="nav-link active">Precios</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">Nosotros</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+        
+        <div class="header-actions">
+          <button class="theme-toggle" aria-label="Cambiar tema">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+          <a href="contact.html" class="btn btn-primary">Solicitar Demo</a>
+        </div>
+      </nav>
+      
+      <button class="mobile-menu-toggle" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    
+    <nav class="mobile-nav">
+      <ul class="mobile-nav-menu">
+        <li class="mobile-nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+        <li class="mobile-nav-item"><a href="features.html" class="nav-link">Funcionalidades</a></li>
+        <li class="mobile-nav-item"><a href="platform.html" class="nav-link">Plataforma</a></li>
+        <li class="mobile-nav-item"><a href="pricing.html" class="nav-link">Precios</a></li>
+        <li class="mobile-nav-item"><a href="about.html" class="nav-link">Nosotros</a></li>
+        <li class="mobile-nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+        <li class="mobile-nav-item"><a href="contact.html" class="btn btn-primary w-full">Solicitar Demo</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero" style="min-height: 50vh;">
+      <div class="hero-background">
+        <div class="gradient-blob gradient-blob-1"></div>
+        <div class="gradient-blob gradient-blob-2"></div>
+      </div>
+      
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title" style="font-size: var(--text-6xl);">
+            Planes que <span class="text-gradient-animated">Escalan</span> Contigo
+          </h1>
+          <p class="hero-subtitle">
+            Transparente, flexible y diseñado para crecer con tu negocio. Sin sorpresas.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Pricing Toggle -->
+    <section class="section pricing-section">
+      <div class="container">
+        <div class="pricing-toggle">
+          <span class="toggle-label active">Mensual</span>
+          <div class="toggle-switch" onclick="this.classList.toggle('active')"></div>
+          <span class="toggle-label">Anual <span class="badge badge-success">-20%</span></span>
+        </div>
+        
+        <!-- Pricing Cards -->
+        <div class="pricing-grid">
+          <!-- Starter Plan -->
+          <div class="card pricing-card hover-lift scroll-animate stagger-animate">
+            <h3 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">Starter</h3>
+            <p style="color: var(--text-secondary); margin-bottom: var(--space-6);">Perfecto para empezar</p>
+            
+            <div class="pricing-price">
+              <span class="pricing-price-currency">$</span>49<span class="pricing-price-period">/mes</span>
+            </div>
+            
+            <ul class="pricing-features">
+              <li>Hasta 5,000 contactos</li>
+              <li>Email marketing ilimitado</li>
+              <li>Automatización básica</li>
+              <li>Analytics esencial</li>
+              <li>Soporte por email</li>
+            </ul>
+            
+            <a href="contact.html" class="btn btn-outline w-full">Comenzar Ahora</a>
+          </div>
+          
+          <!-- Professional Plan (Featured) -->
+          <div class="card pricing-card featured hover-lift scroll-animate stagger-animate">
+            <span class="pricing-badge">Más Popular</span>
+            <h3 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">Professional</h3>
+            <p style="color: var(--text-secondary); margin-bottom: var(--space-6);">Para equipos en crecimiento</p>
+            
+            <div class="pricing-price">
+              <span class="pricing-price-currency">$</span>149<span class="pricing-price-period">/mes</span>
+            </div>
+            
+            <ul class="pricing-features">
+              <li>Hasta 25,000 contactos</li>
+              <li>Todo lo de Starter</li>
+              <li>IA generativa avanzada</li>
+              <li>Multicanal (SMS, Social)</li>
+              <li>Analytics predictivo</li>
+              <li>Soporte prioritario 24/7</li>
+            </ul>
+            
+            <a href="contact.html" class="btn btn-primary w-full">Empezar Trial</a>
+          </div>
+          
+          <!-- Enterprise Plan -->
+          <div class="card pricing-card hover-lift scroll-animate stagger-animate">
+            <h3 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">Enterprise</h3>
+            <p style="color: var(--text-secondary); margin-bottom: var(--space-6);">Para grandes organizaciones</p>
+            
+            <div class="pricing-price">
+              <span style="font-size: var(--text-3xl);">Personalizado</span>
+            </div>
+            
+            <ul class="pricing-features">
+              <li>Contactos ilimitados</li>
+              <li>Todo lo de Professional</li>
+              <li>Whitelabel completo</li>
+              <li>API personalizada</li>
+              <li>Onboarding dedicado</li>
+              <li>Account manager</li>
+              <li>SLA garantizado</li>
+            </ul>
+            
+            <a href="contact.html" class="btn btn-outline w-full">Contactar Ventas</a>
+          </div>
+        </div>
+        
+        <!-- Features Comparison -->
+        <div style="margin-top: var(--space-16); text-align: center;">
+          <h2 class="section-title scroll-animate">Comparación Detallada</h2>
+          <div class="card" style="overflow-x: auto; margin-top: var(--space-8);">
+            <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--border-color);">
+                  <th style="text-align: left; padding: var(--space-4);">Funcionalidad</th>
+                  <th style="padding: var(--space-4);">Starter</th>
+                  <th style="padding: var(--space-4);">Professional</th>
+                  <th style="padding: var(--space-4);">Enterprise</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: var(--space-4);">Contactos</td>
+                  <td style="text-align: center; padding: var(--space-4);">5,000</td>
+                  <td style="text-align: center; padding: var(--space-4);">25,000</td>
+                  <td style="text-align: center; padding: var(--space-4);">Ilimitado</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: var(--space-4);">Email Marketing</td>
+                  <td style="text-align: center; padding: var(--space-4);">✓</td>
+                  <td style="text-align: center; padding: var(--space-4);">✓</td>
+                  <td style="text-align: center; padding: var(--space-4);">✓</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: var(--space-4);">IA Generativa</td>
+                  <td style="text-align: center; padding: var(--space-4);">—</td>
+                  <td style="text-align: center; padding: var(--space-4);">✓</td>
+                  <td style="text-align: center; padding: var(--space-4);">✓</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-color);">
+                  <td style="padding: var(--space-4);">Multicanal</td>
+                  <td style="text-align: center; padding: var(--space-4);">—</td>
+                  <td style="text-align: center; padding: var(--space-4);">✓</td>
+                  <td style="text-align: center; padding: var(--space-4);">✓</td>
+                </tr>
+                <tr>
+                  <td style="padding: var(--space-4);">Soporte</td>
+                  <td style="text-align: center; padding: var(--space-4);">Email</td>
+                  <td style="text-align: center; padding: var(--space-4);">24/7</td>
+                  <td style="text-align: center; padding: var(--space-4);">Dedicado</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="section">
+      <div class="container" style="max-width: 800px;">
+        <div class="text-center mb-12">
+          <h2 class="section-title">Preguntas Frecuentes</h2>
+        </div>
+        
+        <div class="accordion">
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>¿Puedo cambiar de plan en cualquier momento?</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                Sí, puedes actualizar o degradar tu plan en cualquier momento. Los cambios se aplican inmediatamente y ajustamos la facturación de forma proporcional.
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>¿Ofrecen prueba gratuita?</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                Sí, ofrecemos 14 días de prueba gratuita en todos los planes. No se requiere tarjeta de crédito para comenzar.
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <button class="accordion-header">
+              <span>¿Qué métodos de pago aceptan?</span>
+              <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                Aceptamos todas las tarjetas de crédito principales, transferencias bancarias y PayPal para planes anuales.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="cta-title">¿No Estás Seguro Qué Plan Elegir?</h2>
+        <p class="cta-description">
+          Nuestro equipo te ayudará a encontrar el plan perfecto para tus necesidades.
+        </p>
+        <a href="contact.html" class="btn btn-white btn-xl">Hablar con un Experto</a>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-column">
+          <div class="logo" style="color: var(--white); margin-bottom: var(--space-4);">
+            <div class="logo-icon">EM</div>
+            <span>Estepa Marketing</span>
+          </div>
+          <p>La plataforma de automatización de marketing más avanzada.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Producto</h3>
+          <ul class="footer-links">
+            <li><a href="features.html">Funcionalidades</a></li>
+            <li><a href="pricing.html">Precios</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul class="footer-links">
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Soporte</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Newsletter</h3>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="tu@email.com" required>
+            <button type="submit" class="newsletter-btn">Suscribir</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="footer-copyright">© 2024 Estepa Marketing. Todos los derechos reservados.</div>
+        <div class="footer-legal">
+          <a href="#">Privacidad</a>
+          <a href="#">Términos</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/forms.js"></script>
+</body>
+</html>

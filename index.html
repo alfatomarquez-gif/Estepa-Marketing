@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Estepa Marketing - Automatiza tu Marketing con IA que Genera Resultados Reales. Plataforma SaaS premium para agencias ambiciosas.">
+  <meta name="keywords" content="marketing automation, IA, SaaS, marketing digital, automatización">
+  <title>Estepa Marketing - Automatización de Marketing con IA</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/pages.css">
+  
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@600;700;800&family=Space+Grotesk:wght@500;700&display=swap" as="style">
+</head>
+<body>
+  <!-- Skip to Content (Accessibility) -->
+  <a href="#main-content" class="skip-to-content">Saltar al contenido</a>
+  
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress"></div>
+  
+  <!-- Header / Navigation -->
+  <header class="header">
+    <div class="header-container">
+      <!-- Logo -->
+      <a href="index.html" class="logo">
+        <div class="logo-icon">EM</div>
+        <span>Estepa Marketing</span>
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <nav class="nav">
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link active">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="features.html" class="nav-link">
+              Funcionalidades
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <div class="mega-menu">
+              <div class="mega-menu-grid">
+                <div class="mega-menu-column">
+                  <h4>Automatización</h4>
+                  <ul class="mega-menu-list">
+                    <li><a href="features.html#automation" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M12 1v6m0 6v6m5.196-13.196l-4.242 4.242m0 5.908l4.242 4.242M1 12h6m6 0h6m-13.196 5.196l4.242-4.242m5.908 0l4.242 4.242"></path>
+                      </svg>
+                      Campañas Automáticas
+                    </a></li>
+                    <li><a href="features.html#workflows" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 11 12 14 22 4"></polyline>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                      </svg>
+                      Workflows Inteligentes
+                    </a></li>
+                  </ul>
+                </div>
+                <div class="mega-menu-column">
+                  <h4>IA Avanzada</h4>
+                  <ul class="mega-menu-list">
+                    <li><a href="features.html#ai" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                      </svg>
+                      Contenido con IA
+                    </a></li>
+                    <li><a href="features.html#analytics" class="dropdown-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                      </svg>
+                      Analytics Predictivo
+                    </a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="platform.html" class="nav-link">Plataforma</a>
+          </li>
+          <li class="nav-item">
+            <a href="pricing.html" class="nav-link">Precios</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link">Blog</a>
+          </li>
+        </ul>
+        
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <button class="theme-toggle" aria-label="Cambiar tema">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+          <a href="contact.html" class="btn btn-primary">Solicitar Demo</a>
+        </div>
+      </nav>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+      <ul class="mobile-nav-menu">
+        <li class="mobile-nav-item">
+          <a href="index.html" class="nav-link">Inicio</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="features.html" class="nav-link">Funcionalidades</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="platform.html" class="nav-link">Plataforma</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="pricing.html" class="nav-link">Precios</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="about.html" class="nav-link">Nosotros</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="blog.html" class="nav-link">Blog</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="contact.html" class="btn btn-primary w-full">Solicitar Demo</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-background">
+        <div class="gradient-blob gradient-blob-1"></div>
+        <div class="gradient-blob gradient-blob-2"></div>
+        <div class="gradient-blob gradient-blob-3"></div>
+      </div>
+      
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge animate-fadeInDown">
+            <span class="badge badge-new">Nuevo</span>
+            <span>IA Generativa Integrada</span>
+          </div>
+          
+          <h1 class="hero-title">
+            Automatiza tu Marketing<br>
+            con <span class="text-gradient-animated">IA que Genera</span><br>
+            Resultados Reales
+          </h1>
+          
+          <p class="hero-subtitle">
+            La plataforma todo-en-uno que las agencias líderes utilizan para crear, automatizar y escalar campañas de marketing con inteligencia artificial avanzada.
+          </p>
+          
+          <div class="hero-buttons">
+            <a href="contact.html" class="btn btn-primary btn-xl">
+              Comenzar Gratis
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="dashboard-preview.html" class="btn btn-white btn-xl">
+              Ver Demo en Vivo
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </a>
+          </div>
+          
+          <!-- Hero Stats -->
+          <div class="hero-stats">
+            <div class="hero-stat-item scroll-animate">
+              <span class="hero-stat-number" data-counter="15000" data-suffix="+">0+</span>
+              <span class="hero-stat-label">Campañas Activas</span>
+            </div>
+            <div class="hero-stat-item scroll-animate">
+              <span class="hero-stat-number" data-counter="98" data-suffix="%">0%</span>
+              <span class="hero-stat-label">Satisfacción Cliente</span>
+            </div>
+            <div class="hero-stat-item scroll-animate">
+              <span class="hero-stat-number" data-counter="3" data-suffix="x">0x</span>
+              <span class="hero-stat-label">ROI Promedio</span>
+            </div>
+          </div>
+          
+          <!-- Hero Mockup -->
+          <div class="hero-mockup scroll-animate-scale">
+            <svg viewBox="0 0 1200 700" style="width: 100%; height: auto; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 24px; box-shadow: 0 40px 80px rgba(0,0,0,0.3);">
+              <rect width="1200" height="60" fill="rgba(255,255,255,0.1)"/>
+              <circle cx="30" cy="30" r="8" fill="rgba(255,255,255,0.3)"/>
+              <circle cx="60" cy="30" r="8" fill="rgba(255,255,255,0.3)"/>
+              <circle cx="90" cy="30" r="8" fill="rgba(255,255,255,0.3)"/>
+              <rect x="50" y="100" width="300" height="550" rx="12" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+              <rect x="380" y="100" width="780" height="250" rx="12" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+              <rect x="380" y="380" width="380" height="270" rx="12" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+              <rect x="780" y="380" width="380" height="270" rx="12" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+              <text x="600" y="360" text-anchor="middle" fill="white" font-size="24" font-weight="bold">Dashboard Premium</text>
+            </svg>
+          </div>
+          
+          <!-- Scroll Indicator -->
+          <div class="scroll-indicator" style="margin-top: 60px;"></div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="section features-section" id="features">
+      <div class="container">
+        <div class="features-header scroll-animate">
+          <span class="section-badge">Funcionalidades</span>
+          <h2 class="section-title">Todo lo que Necesitas para Dominar el Marketing Digital</h2>
+          <p class="section-description">
+            Herramientas profesionales que se integran perfectamente para potenciar cada aspecto de tu estrategia de marketing.
+          </p>
+        </div>
+        
+        <div class="features-grid">
+          <div class="card card-glass feature-card hover-lift scroll-animate stagger-animate">
+            <div class="feature-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 1v6m0 6v6m5.196-13.196l-4.242 4.242m0 5.908l4.242 4.242M1 12h6m6 0h6m-13.196 5.196l4.242-4.242m5.908 0l4.242 4.242"></path>
+              </svg>
+            </div>
+            <h3 class="feature-card-title">Automatización Inteligente</h3>
+            <p class="feature-card-description">
+              Crea workflows complejos que se ejecutan automáticamente. Desde segmentación hasta personalización en tiempo real.
+            </p>
+          </div>
+          
+          <div class="card card-glass feature-card hover-lift scroll-animate stagger-animate">
+            <div class="feature-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <h3 class="feature-card-title">IA Generativa</h3>
+            <p class="feature-card-description">
+              Genera contenido, imágenes y copys optimizados con nuestro motor de IA entrenado en millones de campañas exitosas.
+            </p>
+          </div>
+          
+          <div class="card card-glass feature-card hover-lift scroll-animate stagger-animate">
+            <div class="feature-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <h3 class="feature-card-title">Analytics Avanzado</h3>
+            <p class="feature-card-description">
+              Dashboards en tiempo real con insights accionables. Predicciones de rendimiento y recomendaciones automáticas.
+            </p>
+          </div>
+          
+          <div class="card card-glass feature-card hover-lift scroll-animate stagger-animate">
+            <div class="feature-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                <polyline points="17 2 12 7 7 2"></polyline>
+              </svg>
+            </div>
+            <h3 class="feature-card-title">Multicanal Integrado</h3>
+            <p class="feature-card-description">
+              Email, SMS, redes sociales, push notifications y más. Todo desde una sola plataforma centralizada.
+            </p>
+          </div>
+          
+          <div class="card card-glass feature-card hover-lift scroll-animate stagger-animate">
+            <div class="feature-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="feature-card-title">Segmentación Dinámica</h3>
+            <p class="feature-card-description">
+              Segmenta tu audiencia con precisión quirúrgica usando comportamiento, datos demográficos y predicciones de IA.
+            </p>
+          </div>
+          
+          <div class="card card-glass feature-card hover-lift scroll-animate stagger-animate">
+            <div class="feature-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="feature-card-title">Seguridad Enterprise</h3>
+            <p class="feature-card-description">
+              Encriptación end-to-end, cumplimiento GDPR, backups automáticos y autenticación de dos factores incluida.
+            </p>
+          </div>
+        </div>
+        
+        <div class="text-center mt-12">
+          <a href="features.html" class="btn btn-primary btn-lg">
+            Ver Todas las Funcionalidades
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="section py-20" style="background: var(--gradient-primary); color: var(--white);">
+      <div class="container">
+        <div class="stats-container">
+          <div class="stat-item scroll-animate">
+            <div class="stat-number" data-counter="500" data-suffix="+">0+</div>
+            <div class="stat-label">Empresas Confían en Nosotros</div>
+          </div>
+          <div class="stat-item scroll-animate">
+            <div class="stat-number" data-counter="2.5" data-suffix="M+">0M+</div>
+            <div class="stat-label">Emails Enviados al Mes</div>
+          </div>
+          <div class="stat-item scroll-animate">
+            <div class="stat-number" data-counter="150" data-suffix="+">0+</div>
+            <div class="stat-label">Integraciones Disponibles</div>
+          </div>
+          <div class="stat-item scroll-animate">
+            <div class="stat-number" data-counter="99.9" data-suffix="%">0%</div>
+            <div class="stat-label">Uptime Garantizado</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="cta-title scroll-animate">¿Listo para Transformar tu Marketing?</h2>
+        <p class="cta-description scroll-animate">
+          Únete a las empresas líderes que ya están automatizando y escalando con Estepa Marketing.
+        </p>
+        <div class="hero-buttons scroll-animate">
+          <a href="contact.html" class="btn btn-white btn-xl">
+            Comenzar Prueba Gratuita
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="pricing.html" class="btn btn-outline btn-xl" style="border-color: white; color: white;">
+            Ver Precios
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-column">
+          <div class="logo" style="color: var(--white); margin-bottom: var(--space-4);">
+            <div class="logo-icon">EM</div>
+            <span>Estepa Marketing</span>
+          </div>
+          <p>
+            La plataforma de automatización de marketing más avanzada del mercado. Potencia tu negocio con IA.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Twitter">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Producto</h3>
+          <ul class="footer-links">
+            <li><a href="features.html">Funcionalidades</a></li>
+            <li><a href="platform.html">Plataforma</a></li>
+            <li><a href="pricing.html">Precios</a></li>
+            <li><a href="dashboard-preview.html">Demo</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Recursos</h3>
+          <ul class="footer-links">
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Documentación</a></li>
+            <li><a href="#">Centro de Ayuda</a></li>
+            <li><a href="contact.html">Soporte</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Newsletter</h3>
+          <p style="font-size: var(--text-sm); margin-bottom: var(--space-4);">
+            Recibe tips, noticias y actualizaciones directamente en tu inbox.
+          </p>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="tu@email.com" required>
+            <button type="submit" class="newsletter-btn">Suscribir</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          © 2024 Estepa Marketing. Todos los derechos reservados.
+        </div>
+        <div class="footer-legal">
+          <a href="#">Privacidad</a>
+          <a href="#">Términos</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- JavaScript Files -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/theme.js"></script>
+  <script src="assets/js/forms.js"></script>
+</body>
+</html>
