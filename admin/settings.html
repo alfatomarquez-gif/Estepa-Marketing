@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajustes - Estepa Marketing Admin</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+  <style>
+    .settings-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .settings-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--border-color);
+      overflow-x: auto;
+      padding-bottom: 0;
+    }
+
+    .settings-tab {
+      padding: 15px 20px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .settings-tab:hover {
+      color: var(--primary);
+    }
+
+    .settings-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .settings-section {
+      display: none;
+    }
+
+    .settings-section.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .settings-group {
+      background: var(--surface-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .settings-group-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .settings-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .settings-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .settings-row-left {
+      flex: 1;
+    }
+
+    .settings-row-title {
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 5px;
+    }
+
+    .settings-row-description {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .settings-row-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 50px;
+      height: 28px;
+      background: var(--border-color);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .toggle-switch.active {
+      background: var(--primary);
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: 50%;
+      transition: left 0.3s ease;
+    }
+
+    .toggle-switch.active::after {
+      left: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+      font-size: 14px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text-primary);
+      background: var(--surface-primary);
+      transition: border-color 0.2s ease;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-help {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 5px;
+    }
+
+    .settings-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+      
+      .settings-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .settings-row-right {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+
+    .api-key-display {
+      background: var(--surface-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      word-break: break-all;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .danger-zone {
+      border: 1px solid var(--error);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .danger-zone-title {
+      color: var(--error);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .btn-danger {
+      background: var(--error);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.2s ease;
+    }
+
+    .btn-danger:hover {
+      background: #c82333;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(400px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(400px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="sidebar-logo">
+          <div class="sidebar-logo-icon">EM</div>
+          <span class="sidebar-logo-text">Estepa Marketing</span>
+        </a>
+      </div>
+
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar" id="userAvatar">A</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="userName">Admin Usuario</div>
+          <div class="sidebar-user-role">Administrador</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">Principal</div>
+          <ul class="sidebar-nav-list">
+            <li class="sidebar-nav-item">
+              <a href="dashboard.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-icon">📊</span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="campaigns.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-icon">📧</span>
+                <span>Campañas</span>
+                <span class="sidebar-nav-badge">24</span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="contacts.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-icon">👥</span>
+                <span>Contactos</span>
+                <span class="sidebar-nav-badge">1.2K</span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="analytics.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-icon">📈</span>
+                <span>Analytics</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">Configuración</div>
+          <ul class="sidebar-nav-list">
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link active">
+                <span class="sidebar-nav-icon">⚙️</span>
+                <span>Ajustes</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="sidebar-logout">
+        <button class="btn-logout" onclick="logout()">
+          <span>🚪</span>
+          <span>Cerrar Sesión</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">☰</button>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1 class="admin-header-title">Ajustes</h1>
+        <div class="admin-header-actions">
+          <button class="theme-toggle" aria-label="Cambiar tema">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="admin-content">
+        <div class="settings-container">
+          <!-- Settings Tabs -->
+          <div class="settings-tabs">
+            <button class="settings-tab active" data-tab="general">Configuración General</button>
+            <button class="settings-tab" data-tab="notifications">Notificaciones</button>
+            <button class="settings-tab" data-tab="integrations">Integraciones</button>
+            <button class="settings-tab" data-tab="billing">Facturación</button>
+            <button class="settings-tab" data-tab="security">Seguridad</button>
+          </div>
+
+          <!-- General Settings Tab -->
+          <div id="general" class="settings-section active">
+            <div class="settings-group">
+              <h3 class="settings-group-title">ℹ️ Información de la Empresa</h3>
+              <div class="form-group">
+                <label class="form-label">Nombre de la Empresa</label>
+                <input type="text" class="form-input" value="Estepa Marketing">
+              </div>
+              <div class="two-column">
+                <div class="form-group">
+                  <label class="form-label">Correo Electrónico Principal</label>
+                  <input type="email" class="form-input" value="info@estepamkt.com">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Teléfono de Contacto</label>
+                  <input type="tel" class="form-input" value="+34 612 345 678">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Dirección</label>
+                <input type="text" class="form-input" value="Calle Principal 123, Madrid, España">
+              </div>
+              <div class="settings-actions">
+                <button class="btn btn-primary">💾 Guardar Cambios</button>
+              </div>
+            </div>
+
+            <div class="settings-group">
+              <h3 class="settings-group-title">🎨 Preferencias de Interfaz</h3>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Tema Oscuro</div>
+                  <div class="settings-row-description">Activar tema oscuro en toda la plataforma</div>
+                </div>
+                <div class="settings-row-right">
+                  <div class="toggle-switch" id="darkThemeToggle"></div>
+                </div>
+              </div>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Animaciones</div>
+                  <div class="settings-row-description">Habilitar animaciones y transiciones visuales</div>
+                </div>
+                <div class="settings-row-right">
+                  <div class="toggle-switch active" id="animationsToggle"></div>
+                </div>
+              </div>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Modo Compacto</div>
+                  <div class="settings-row-description">Reducir espacios y tamaños de elementos</div>
+                </div>
+                <div class="settings-row-right">
+                  <div class="toggle-switch" id="compactModeToggle"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-group">
+              <h3 class="settings-group-title">⏰ Zona Horaria e Idioma</h3>
+              <div class="two-column">
+                <div class="form-group">
+                  <label class="form-label">Zona Horaria</label>
+                  <select class="form-select">
+                    <option selected>Europa/Madrid (UTC+1)</option>
+                    <option>Europa/Londres (UTC+0)</option>
+                    <option>Europa/París (UTC+1)</option>
+                    <option>América/Nueva_York (UTC-5)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Idioma</label>
+                  <select class="form-select">
+                    <option selected>Español</option>
+                    <option>Inglés</option>
+                    <option>Portugués</option>
+                    <option>Francés</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notifications Tab -->
+          <div id="notifications" class="settings-section">
+            <div class="settings-group">
+              <h3 class="settings-group-title">📧 Notificaciones por Email</h3>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Resumen Diario</div>
+                  <div class="settings-row-description">Recibir un resumen diario de actividades</div>
+                </div>
+                <div class="settings-row-right">
+                  <div class="toggle-switch active" id="dailySummaryToggle"></div>
+                </div>
+              </div>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Alertas de Campaña</div>
+                  <div class="settings-row-description">Notificar cuando una campaña se complete o falle</div>
+                </div>
+                <div class="settings-row-right">
+                  <div class="toggle-switch active" id="campaignAlertsToggle"></div>
+                </div>
+              </div>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Alertas de Contactos</div>
+                  <div class="settings-row-description">Notificar sobre nuevos contactos y cambios</div>
+                </div>
+                <div class="settings-row-right">
+                  <div class="toggle-switch active" id="contactAlertsToggle"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-group">
+              <h3 class="settings-group-title">🔔 Notificaciones del Sistema</h3>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Errores y Problemas</div>
+                  <div class="settings-row-description">Alertas en tiempo real para errores</div>
+                </div>
+                <div class="settings-row-right">
+                  <div class="toggle-switch active" id="errorAlertsToggle"></div>
+                </div>
+              </div>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Actualizaciones del Sistema</div>
+                  <div class="settings-row-description">Notificaciones sobre nuevas funciones</div>
+                </div>
+                <div class="settings-row-right">
+                  <div class="toggle-switch" id="updateNotificationsToggle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Integrations Tab -->
+          <div id="integrations" class="settings-section">
+            <div class="settings-group">
+              <h3 class="settings-group-title">🔗 Integraciones Conectadas</h3>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Stripe</div>
+                  <div class="settings-row-description">Procesar pagos con Stripe</div>
+                </div>
+                <div class="settings-row-right">
+                  <span class="badge badge-success">Conectado</span>
+                </div>
+              </div>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Google Analytics</div>
+                  <div class="settings-row-description">Seguimiento avanzado de usuarios</div>
+                </div>
+                <div class="settings-row-right">
+                  <span class="badge badge-success">Conectado</span>
+                </div>
+              </div>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Mailchimp</div>
+                  <div class="settings-row-description">Sincronización de listas de contactos</div>
+                </div>
+                <div class="settings-row-right">
+                  <span class="badge badge-warning">Sin configurar</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-group">
+              <h3 class="settings-group-title">🔑 Claves de API</h3>
+              <div class="form-group">
+                <label class="form-label">Clave de API Principal</label>
+                <div class="api-key-display">
+                  <span>sk_live_4eC39HqLyjWDarht••••••••••</span>
+                  <button class="btn-icon" title="Copiar">📋</button>
+                </div>
+                <p class="form-help">Usa esta clave para autenticar solicitudes a nuestra API</p>
+              </div>
+              <div class="settings-actions">
+                <button class="btn btn-secondary">🔄 Regenerar Clave</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Billing Tab -->
+          <div id="billing" class="settings-section">
+            <div class="settings-group">
+              <h3 class="settings-group-title">💳 Plan Actual</h3>
+              <div class="settings-row" style="padding: 20px 0;">
+                <div class="settings-row-left">
+                  <div class="settings-row-title" style="font-size: 18px;">Plan Profesional</div>
+                  <div class="settings-row-description">€99/mes • Se renueva el 15 de marzo</div>
+                </div>
+                <div class="settings-row-right">
+                  <button class="btn btn-primary">Cambiar Plan</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-group">
+              <h3 class="settings-group-title">📋 Historial de Facturas</h3>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Importe</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>15 Feb 2024</td>
+                    <td>Plan Profesional - Febrero 2024</td>
+                    <td>€99.00</td>
+                    <td><span class="badge badge-success">Pagado</span></td>
+                    <td><button class="btn-icon">📥</button></td>
+                  </tr>
+                  <tr>
+                    <td>15 Ene 2024</td>
+                    <td>Plan Profesional - Enero 2024</td>
+                    <td>€99.00</td>
+                    <td><span class="badge badge-success">Pagado</span></td>
+                    <td><button class="btn-icon">📥</button></td>
+                  </tr>
+                  <tr>
+                    <td>15 Dic 2023</td>
+                    <td>Plan Profesional - Diciembre 2023</td>
+                    <td>€99.00</td>
+                    <td><span class="badge badge-success">Pagado</span></td>
+                    <td><button class="btn-icon">📥</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="settings-group">
+              <h3 class="settings-group-title">💳 Método de Pago</h3>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Visa terminada en 4242</div>
+                  <div class="settings-row-description">Vencimiento: 12/2025</div>
+                </div>
+                <div class="settings-row-right">
+                  <button class="btn btn-secondary">Actualizar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Security Tab -->
+          <div id="security" class="settings-section">
+            <div class="settings-group">
+              <h3 class="settings-group-title">🔐 Contraseña y Autenticación</h3>
+              <div class="form-group">
+                <label class="form-label">Contraseña Actual</label>
+                <input type="password" class="form-input" placeholder="••••••••">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Nueva Contraseña</label>
+                <input type="password" class="form-input" placeholder="••••••••">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Confirmar Nueva Contraseña</label>
+                <input type="password" class="form-input" placeholder="••••••••">
+              </div>
+              <div class="settings-actions">
+                <button class="btn btn-primary">🔐 Cambiar Contraseña</button>
+              </div>
+            </div>
+
+            <div class="settings-group">
+              <h3 class="settings-group-title">✅ Autenticación de Dos Factores</h3>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Autenticación de Dos Factores (2FA)</div>
+                  <div class="settings-row-description">Añade una capa adicional de seguridad a tu cuenta</div>
+                </div>
+                <div class="settings-row-right">
+                  <button class="btn btn-secondary">Configurar</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-group">
+              <h3 class="settings-group-title">📱 Dispositivos Activos</h3>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Chrome en Windows</div>
+                  <div class="settings-row-description">Última actividad: Hoy a las 14:30</div>
+                </div>
+                <div class="settings-row-right">
+                  <button class="btn btn-secondary">Cerrar Sesión</button>
+                </div>
+              </div>
+              <div class="settings-row">
+                <div class="settings-row-left">
+                  <div class="settings-row-title">Safari en iPhone</div>
+                  <div class="settings-row-description">Última actividad: Ayer a las 22:15</div>
+                </div>
+                <div class="settings-row-right">
+                  <button class="btn btn-secondary">Cerrar Sesión</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-group">
+              <h3 class="settings-group-title">🔒 Registro de Acceso</h3>
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Fecha y Hora</th>
+                    <th>Dispositivo</th>
+                    <th>Ubicación</th>
+                    <th>IP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>15 Feb 2024 14:30</td>
+                    <td>Chrome - Windows</td>
+                    <td>Madrid, España</td>
+                    <td>192.168.1.100</td>
+                  </tr>
+                  <tr>
+                    <td>14 Feb 2024 22:15</td>
+                    <td>Safari - iPhone</td>
+                    <td>Madrid, España</td>
+                    <td>192.168.1.101</td>
+                  </tr>
+                  <tr>
+                    <td>14 Feb 2024 10:45</td>
+                    <td>Chrome - Windows</td>
+                    <td>Madrid, España</td>
+                    <td>192.168.1.100</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="danger-zone">
+              <h3 class="danger-zone-title">⚠️ Zona de Peligro</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 15px; font-size: 14px;">Las siguientes acciones no se pueden deshacer. Por favor, procede con cuidado.</p>
+              <button class="btn-danger">🗑️ Eliminar Cuenta</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script>
+    // Check authentication on page load
+    const session = checkAuth();
+    
+    if (session) {
+      // Update user info in sidebar
+      const user = session.user;
+      document.getElementById('userName').textContent = user.name || 'Admin Usuario';
+      document.getElementById('userAvatar').textContent = (user.name || 'A').charAt(0).toUpperCase();
+    }
+
+    // Mobile sidebar toggle
+    const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+    const adminSidebar = document.getElementById('adminSidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    mobileSidebarToggle.addEventListener('click', function() {
+      adminSidebar.classList.toggle('open');
+      sidebarOverlay.classList.toggle('show');
+    });
+
+    sidebarOverlay.addEventListener('click', function() {
+      adminSidebar.classList.remove('open');
+      sidebarOverlay.classList.remove('show');
+    });
+
+    // Close sidebar on navigation click (mobile)
+    document.querySelectorAll('.sidebar-nav-link').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 1024) {
+          adminSidebar.classList.remove('open');
+          sidebarOverlay.classList.remove('show');
+        }
+      });
+    });
+
+    // Settings tabs functionality
+    document.querySelectorAll('.settings-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const tabName = this.dataset.tab;
+        
+        // Hide all sections
+        document.querySelectorAll('.settings-section').forEach(section => {
+          section.classList.remove('active');
+        });
+        
+        // Remove active class from all tabs
+        document.querySelectorAll('.settings-tab').forEach(t => {
+          t.classList.remove('active');
+        });
+        
+        // Show selected section
+        document.getElementById(tabName).classList.add('active');
+        this.classList.add('active');
+      });
+    });
+
+    // Toggle switch functionality
+    document.querySelectorAll('.toggle-switch').forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+      });
+    });
+
+    // Show success message on save
+    document.querySelectorAll('.settings-actions .btn-primary').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Show a better notification instead of alert
+        const message = document.createElement('div');
+        message.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: var(--success-dark);
+          color: white;
+          padding: 16px 24px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          z-index: 9999;
+          animation: slideIn 0.3s ease;
+          font-weight: 500;
+        `;
+        message.textContent = '✅ Cambios guardados correctamente';
+        document.body.appendChild(message);
+        
+        setTimeout(() => {
+          message.style.animation = 'slideOut 0.3s ease';
+          setTimeout(() => message.remove(), 300);
+        }, 3000);
+      });
+    });
+  </script>
+</body>
+</html>

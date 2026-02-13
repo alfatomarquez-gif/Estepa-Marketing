@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contactos - Estepa Marketing Admin</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="sidebar-logo">
+          <div class="sidebar-logo-icon">EM</div>
+          <span class="sidebar-logo-text">Estepa Marketing</span>
+        </a>
+      </div>
+
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar" id="userAvatar">A</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="userName">Admin Usuario</div>
+          <div class="sidebar-user-role">Administrador</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">Principal</div>
+          <ul class="sidebar-nav-list">
+            <li class="sidebar-nav-item">
+              <a href="dashboard.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-icon">📊</span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="campaigns.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-icon">📧</span>
+                <span>Campañas</span>
+                <span class="sidebar-nav-badge">24</span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="contacts.html" class="sidebar-nav-link active">
+                <span class="sidebar-nav-icon">👥</span>
+                <span>Contactos</span>
+                <span class="sidebar-nav-badge">1.2K</span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="analytics.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-icon">📈</span>
+                <span>Analytics</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">Configuración</div>
+          <ul class="sidebar-nav-list">
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-icon">⚙️</span>
+                <span>Ajustes</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="sidebar-logout">
+        <button class="btn-logout" onclick="logout()">
+          <span>🚪</span>
+          <span>Cerrar Sesión</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">☰</button>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1 class="admin-header-title">Contactos</h1>
+        <div class="admin-header-actions">
+          <button class="theme-toggle" aria-label="Cambiar tema">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+          <a href="../contact.html" class="btn btn-primary">+ Importar Contactos</a>
+        </div>
+      </header>
+
+      <div class="admin-content">
+        <!-- Stats Section -->
+        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Contactos Totales</span>
+              <div class="stat-card-icon primary">👥</div>
+            </div>
+            <div class="stat-card-value">1,245</div>
+            <div class="stat-card-footer">
+              <span class="stat-card-change positive">
+                <span>↑</span>
+                <span>18%</span>
+              </span>
+              <span class="stat-card-label">vs mes pasado</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Suscritos</span>
+              <div class="stat-card-icon success">✅</div>
+            </div>
+            <div class="stat-card-value">1,089</div>
+            <div class="stat-card-footer">
+              <span class="stat-card-change positive">
+                <span>↑</span>
+                <span>12%</span>
+              </span>
+              <span class="stat-card-label">activos</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Desuscritos</span>
+              <div class="stat-card-icon warning">❌</div>
+            </div>
+            <div class="stat-card-value">156</div>
+            <div class="stat-card-footer">
+              <span class="stat-card-change negative">
+                <span>↓</span>
+                <span>2%</span>
+              </span>
+              <span class="stat-card-label">este mes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-section">
+          <div class="filter-group">
+            <input type="text" class="filter-input" id="searchInput" placeholder="Buscar por nombre o email...">
+          </div>
+          <div class="filter-group">
+            <select class="filter-select" id="statusFilter">
+              <option value="">Todos los estados</option>
+              <option value="active">Activo</option>
+              <option value="inactive">Inactivo</option>
+              <option value="unsubscribed">Desuscrito</option>
+              <option value="bounced">Rebote</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <select class="filter-select" id="segmentFilter">
+              <option value="">Todos los segmentos</option>
+              <option value="vip">VIP</option>
+              <option value="standard">Estándar</option>
+              <option value="prospect">Prospecto</option>
+              <option value="inactive">Inactivo</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Contacts Table -->
+        <div class="data-table-container">
+          <div class="data-table-header">
+            <h2 class="data-table-title">Todos los Contactos (1,245)</h2>
+            <div class="table-actions">
+              <button class="btn btn-secondary btn-sm">📥 Exportar</button>
+              <button class="btn btn-secondary btn-sm">📤 Importar</button>
+            </div>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Segmento</th>
+                <th>Estado</th>
+                <th>Fecha Suscripción</th>
+                <th>Última Apertura</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">María García López</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Cliente Premium</div>
+                </td>
+                <td>maria.garcia@email.com</td>
+                <td>+34 612 345 678</td>
+                <td><span class="badge badge-error">VIP</span></td>
+                <td>
+                  <span class="status-badge active">
+                    <span class="status-dot"></span>
+                    <span>Activo</span>
+                  </span>
+                </td>
+                <td>15 Ene 2024</td>
+                <td>Hoy</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver perfil">👁️</button>
+                    <button class="btn-icon" title="Editar">✏️</button>
+                    <button class="btn-icon" title="Eliminar">🗑️</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">Juan Martínez Sánchez</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Cliente Regular</div>
+                </td>
+                <td>juan.martinez@email.com</td>
+                <td>+34 698 765 432</td>
+                <td><span class="badge badge-info">Estándar</span></td>
+                <td>
+                  <span class="status-badge active">
+                    <span class="status-dot"></span>
+                    <span>Activo</span>
+                  </span>
+                </td>
+                <td>22 Dic 2023</td>
+                <td>Hace 2 días</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver perfil">👁️</button>
+                    <button class="btn-icon" title="Editar">✏️</button>
+                    <button class="btn-icon" title="Eliminar">🗑️</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">Ana Fernández Ruiz</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Prospecto Nuevo</div>
+                </td>
+                <td>ana.fernandez@email.com</td>
+                <td>+34 654 987 123</td>
+                <td><span class="badge badge-warning">Prospecto</span></td>
+                <td>
+                  <span class="status-badge active">
+                    <span class="status-dot"></span>
+                    <span>Activo</span>
+                  </span>
+                </td>
+                <td>05 Feb 2024</td>
+                <td>Hace 5 horas</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver perfil">👁️</button>
+                    <button class="btn-icon" title="Editar">✏️</button>
+                    <button class="btn-icon" title="Eliminar">🗑️</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">Carlos López Díaz</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Cliente VIP</div>
+                </td>
+                <td>carlos.lopez@email.com</td>
+                <td>+34 723 456 789</td>
+                <td><span class="badge badge-error">VIP</span></td>
+                <td>
+                  <span class="status-badge inactive">
+                    <span class="status-dot"></span>
+                    <span>Inactivo</span>
+                  </span>
+                </td>
+                <td>10 Nov 2023</td>
+                <td>Hace 15 días</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver perfil">👁️</button>
+                    <button class="btn-icon" title="Editar">✏️</button>
+                    <button class="btn-icon" title="Eliminar">🗑️</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">Isabel Rodríguez Gómez</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Contacto Activo</div>
+                </td>
+                <td>isabel.rodriguez@email.com</td>
+                <td>+34 645 123 456</td>
+                <td><span class="badge badge-info">Estándar</span></td>
+                <td>
+                  <span class="status-badge active">
+                    <span class="status-dot"></span>
+                    <span>Activo</span>
+                  </span>
+                </td>
+                <td>28 Ene 2024</td>
+                <td>Hoy</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver perfil">👁️</button>
+                    <button class="btn-icon" title="Editar">✏️</button>
+                    <button class="btn-icon" title="Eliminar">🗑️</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">Pedro Jiménez Romero</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Usuario Registrado</div>
+                </td>
+                <td>pedro.jimenez@email.com</td>
+                <td>+34 667 890 123</td>
+                <td><span class="badge badge-info">Estándar</span></td>
+                <td>
+                  <span class="status-badge inactive">
+                    <span class="status-dot"></span>
+                    <span>Inactivo</span>
+                  </span>
+                </td>
+                <td>03 Dic 2023</td>
+                <td>Hace 30 días</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver perfil">👁️</button>
+                    <button class="btn-icon" title="Editar">✏️</button>
+                    <button class="btn-icon" title="Eliminar">🗑️</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">Rosa García Martín</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Cliente Nuevo</div>
+                </td>
+                <td>rosa.garcia@email.com</td>
+                <td>+34 678 234 567</td>
+                <td><span class="badge badge-warning">Prospecto</span></td>
+                <td>
+                  <span class="status-badge active">
+                    <span class="status-dot"></span>
+                    <span>Activo</span>
+                  </span>
+                </td>
+                <td>01 Feb 2024</td>
+                <td>Ayer</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver perfil">👁️</button>
+                    <button class="btn-icon" title="Editar">✏️</button>
+                    <button class="btn-icon" title="Eliminar">🗑️</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">Francisco Sánchez Moreno</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Cliente VIP</div>
+                </td>
+                <td>francisco.sanchez@email.com</td>
+                <td>+34 712 567 890</td>
+                <td><span class="badge badge-error">VIP</span></td>
+                <td>
+                  <span class="status-badge active">
+                    <span class="status-dot"></span>
+                    <span>Activo</span>
+                  </span>
+                </td>
+                <td>08 Ene 2024</td>
+                <td>Hace 3 días</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver perfil">👁️</button>
+                    <button class="btn-icon" title="Editar">✏️</button>
+                    <button class="btn-icon" title="Eliminar">🗑️</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="btn btn-secondary btn-sm" disabled>← Anterior</button>
+          <span class="pagination-info">Página 1 de 156</span>
+          <button class="btn btn-secondary btn-sm">Siguiente →</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script>
+    // Check authentication on page load
+    const session = checkAuth();
+    
+    if (session) {
+      // Update user info in sidebar
+      const user = session.user;
+      document.getElementById('userName').textContent = user.name || 'Admin Usuario';
+      document.getElementById('userAvatar').textContent = (user.name || 'A').charAt(0).toUpperCase();
+    }
+
+    // Mobile sidebar toggle
+    const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+    const adminSidebar = document.getElementById('adminSidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    mobileSidebarToggle.addEventListener('click', function() {
+      adminSidebar.classList.toggle('open');
+      sidebarOverlay.classList.toggle('show');
+    });
+
+    sidebarOverlay.addEventListener('click', function() {
+      adminSidebar.classList.remove('open');
+      sidebarOverlay.classList.remove('show');
+    });
+
+    // Close sidebar on navigation click (mobile)
+    document.querySelectorAll('.sidebar-nav-link').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 1024) {
+          adminSidebar.classList.remove('open');
+          sidebarOverlay.classList.remove('show');
+        }
+      });
+    });
+
+    // Filter functionality
+    const searchInput = document.getElementById('searchInput');
+    const statusFilter = document.getElementById('statusFilter');
+    const segmentFilter = document.getElementById('segmentFilter');
+    const tableRows = document.querySelectorAll('.data-table tbody tr');
+
+    function filterTable() {
+      const searchText = searchInput.value.toLowerCase();
+      const statusValue = statusFilter.value;
+      const segmentValue = segmentFilter.value;
+
+      tableRows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        const status = row.querySelector('.status-badge')?.classList.toString();
+        const segment = row.querySelector('.badge')?.textContent.toLowerCase();
+
+        let show = true;
+        if (searchText && !text.includes(searchText)) show = false;
+        if (statusValue && !status?.includes(statusValue)) show = false;
+        if (segmentValue && !segment?.includes(segmentValue)) show = false;
+
+        row.style.display = show ? '' : 'none';
+      });
+    }
+
+    searchInput.addEventListener('input', filterTable);
+    statusFilter.addEventListener('change', filterTable);
+    segmentFilter.addEventListener('change', filterTable);
+  </script>
+</body>
+</html>

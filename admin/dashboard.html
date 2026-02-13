@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Estepa Marketing Admin</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/animations.css">
+  <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="sidebar-logo">
+          <div class="sidebar-logo-icon">EM</div>
+          <span class="sidebar-logo-text">Estepa Marketing</span>
+        </a>
+      </div>
+
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar" id="userAvatar">A</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="userName">Admin Usuario</div>
+          <div class="sidebar-user-role">Administrador</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">Principal</div>
+          <ul class="sidebar-nav-list">
+            <li class="sidebar-nav-item">
+              <a href="dashboard.html" class="sidebar-nav-link active">
+                <span class="sidebar-nav-icon">📊</span>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="campaigns.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-icon">📧</span>
+                <span>Campañas</span>
+                <span class="sidebar-nav-badge">24</span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="contacts.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-icon">👥</span>
+                <span>Contactos</span>
+                <span class="sidebar-nav-badge">1.2K</span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a href="analytics.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-icon">📈</span>
+                <span>Analytics</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-nav-section">
+          <div class="sidebar-nav-title">Configuración</div>
+          <ul class="sidebar-nav-list">
+            <li class="sidebar-nav-item">
+              <a href="settings.html" class="sidebar-nav-link">
+                <span class="sidebar-nav-icon">⚙️</span>
+                <span>Ajustes</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="sidebar-logout">
+        <button class="btn-logout" onclick="logout()">
+          <span>🚪</span>
+          <span>Cerrar Sesión</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Mobile Toggle -->
+    <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">☰</button>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1 class="admin-header-title">Dashboard</h1>
+        <div class="admin-header-actions">
+          <button class="theme-toggle" aria-label="Cambiar tema">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+          <a href="../contact.html" class="btn btn-primary">Nueva Campaña</a>
+        </div>
+      </header>
+
+      <div class="admin-content">
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Campañas Activas</span>
+              <div class="stat-card-icon primary">📧</div>
+            </div>
+            <div class="stat-card-value">24</div>
+            <div class="stat-card-footer">
+              <span class="stat-card-change positive">
+                <span>↑</span>
+                <span>12%</span>
+              </span>
+              <span class="stat-card-label">vs mes pasado</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Tasa de Conversión</span>
+              <div class="stat-card-icon success">📊</div>
+            </div>
+            <div class="stat-card-value">3.4%</div>
+            <div class="stat-card-footer">
+              <span class="stat-card-change positive">
+                <span>↑</span>
+                <span>8%</span>
+              </span>
+              <span class="stat-card-label">vs mes pasado</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Contactos Activos</span>
+              <div class="stat-card-icon warning">👥</div>
+            </div>
+            <div class="stat-card-value">12.5K</div>
+            <div class="stat-card-footer">
+              <span class="stat-card-change positive">
+                <span>↑</span>
+                <span>24%</span>
+              </span>
+              <span class="stat-card-label">vs mes pasado</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">ROI Este Mes</span>
+              <div class="stat-card-icon success">💰</div>
+            </div>
+            <div class="stat-card-value">€45K</div>
+            <div class="stat-card-footer">
+              <span class="stat-card-change positive">
+                <span>↑</span>
+                <span>15%</span>
+              </span>
+              <span class="stat-card-label">vs mes pasado</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Campaigns Table -->
+        <div class="data-table-container">
+          <div class="data-table-header">
+            <h2 class="data-table-title">Campañas Recientes</h2>
+            <a href="campaigns.html" class="btn btn-primary btn-sm">Ver Todas</a>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Campaña</th>
+                <th>Estado</th>
+                <th>Enviados</th>
+                <th>Abiertos</th>
+                <th>Clicks</th>
+                <th>Conversiones</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">Newsletter Febrero 2024</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Email Marketing</div>
+                </td>
+                <td>
+                  <span class="status-badge active">
+                    <span class="status-dot"></span>
+                    <span>Activa</span>
+                  </span>
+                </td>
+                <td>15,234</td>
+                <td>9,876 (64.8%)</td>
+                <td>3,421 (22.5%)</td>
+                <td>542 (3.6%)</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver detalles">👁️</button>
+                    <button class="btn-icon" title="Editar">✏️</button>
+                    <button class="btn-icon" title="Pausar">⏸️</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">Promoción Verano</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Campaña SMS</div>
+                </td>
+                <td>
+                  <span class="status-badge active">
+                    <span class="status-dot"></span>
+                    <span>Activa</span>
+                  </span>
+                </td>
+                <td>8,456</td>
+                <td>7,234 (85.5%)</td>
+                <td>2,145 (25.4%)</td>
+                <td>321 (3.8%)</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver detalles">👁️</button>
+                    <button class="btn-icon" title="Editar">✏️</button>
+                    <button class="btn-icon" title="Pausar">⏸️</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">Recuperación Carrito</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Automatización</div>
+                </td>
+                <td>
+                  <span class="status-badge active">
+                    <span class="status-dot"></span>
+                    <span>Activa</span>
+                  </span>
+                </td>
+                <td>3,214</td>
+                <td>2,145 (66.7%)</td>
+                <td>987 (30.7%)</td>
+                <td>234 (7.3%)</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver detalles">👁️</button>
+                    <button class="btn-icon" title="Editar">✏️</button>
+                    <button class="btn-icon" title="Pausar">⏸️</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">Bienvenida Nuevos Usuarios</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Serie Email</div>
+                </td>
+                <td>
+                  <span class="status-badge pending">
+                    <span class="status-dot"></span>
+                    <span>Programada</span>
+                  </span>
+                </td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver detalles">👁️</button>
+                    <button class="btn-icon" title="Editar">✏️</button>
+                    <button class="btn-icon" title="Iniciar">▶️</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: 600;">Black Friday 2023</div>
+                  <div style="font-size: 13px; color: var(--text-secondary);">Email Marketing</div>
+                </td>
+                <td>
+                  <span class="status-badge inactive">
+                    <span class="status-dot"></span>
+                    <span>Finalizada</span>
+                  </span>
+                </td>
+                <td>45,678</td>
+                <td>32,456 (71.1%)</td>
+                <td>12,345 (27.0%)</td>
+                <td>3,456 (7.6%)</td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="btn-icon" title="Ver detalles">👁️</button>
+                    <button class="btn-icon" title="Duplicar">📋</button>
+                    <button class="btn-icon" title="Archivar">🗄️</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/auth.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script>
+    // Check authentication on page load
+    const session = checkAuth();
+    
+    if (session) {
+      // Update user info in sidebar
+      const user = session.user;
+      document.getElementById('userName').textContent = user.name || 'Admin Usuario';
+      document.getElementById('userAvatar').textContent = (user.name || 'A').charAt(0).toUpperCase();
+    }
+
+    // Mobile sidebar toggle
+    const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+    const adminSidebar = document.getElementById('adminSidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    mobileSidebarToggle.addEventListener('click', function() {
+      adminSidebar.classList.toggle('open');
+      sidebarOverlay.classList.toggle('show');
+    });
+
+    sidebarOverlay.addEventListener('click', function() {
+      adminSidebar.classList.remove('open');
+      sidebarOverlay.classList.remove('show');
+    });
+
+    // Close sidebar on navigation click (mobile)
+    document.querySelectorAll('.sidebar-nav-link').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 1024) {
+          adminSidebar.classList.remove('open');
+          sidebarOverlay.classList.remove('show');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
