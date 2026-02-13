@@ -29,6 +29,24 @@ A premium, multi-page SaaS web application built with modern HTML5, CSS3, and Ja
 7. **blog.html** - Blog and resources listing
 8. **dashboard-preview.html** - Interactive dashboard simulation
 
+### 🔐 Admin Panel
+A complete, protected administration dashboard:
+1. **login.html** - Secure authentication with demo credentials
+2. **dashboard.html** - Overview with key metrics and recent activity
+3. **campaigns.html** - Campaign management with filtering and search
+4. **contacts.html** - Contact database with import/export
+5. **analytics.html** - Advanced analytics and reporting
+6. **settings.html** - System configuration and user preferences
+
+**Features:**
+- Session-based authentication (localStorage for demo)
+- Protected routes with auto-redirect
+- Responsive sidebar navigation
+- Mobile-optimized interface
+- Dark/light theme support
+- Real-time data filtering
+- Professional data tables and cards
+
 ### 🛠 Technical Stack
 - **HTML5** - Semantic, accessible markup
 - **CSS3** - Custom properties, Grid, Flexbox, animations
@@ -48,19 +66,29 @@ A premium, multi-page SaaS web application built with modern HTML5, CSS3, and Ja
 ├── blog.html
 ├── dashboard-preview.html
 │
+├── admin/                   # Admin Panel (Protected)
+│   ├── login.html          # Admin authentication
+│   ├── dashboard.html      # Main admin dashboard
+│   ├── campaigns.html      # Campaign management
+│   ├── contacts.html       # Contact database
+│   ├── analytics.html      # Analytics & reporting
+│   └── settings.html       # Admin settings
+│
 ├── assets/
 │   ├── css/
 │   │   ├── main.css          # Variables, reset, utilities
 │   │   ├── components.css    # Reusable UI components
 │   │   ├── layout.css        # Header, footer, navigation
 │   │   ├── animations.css    # Keyframes and transitions
-│   │   └── pages.css         # Page-specific styles
+│   │   ├── pages.css         # Page-specific styles
+│   │   └── admin.css         # Admin panel styles
 │   │
 │   ├── js/
 │   │   ├── main.js           # Core initialization
 │   │   ├── navigation.js     # Menu and scroll behavior
 │   │   ├── theme.js          # Dark/light mode toggle
-│   │   └── forms.js          # Form validation and handling
+│   │   ├── forms.js          # Form validation and handling
+│   │   └── auth.js           # Authentication management
 │   │
 │   └── images/               # Image assets
 │
@@ -89,6 +117,27 @@ Based on 4px increments (4, 8, 12, 16, 24, 32, 48, 64, 96, 128)
 1. Clone the repository
 2. Open `index.html` in a modern web browser
 3. No build process required!
+
+### Admin Panel Access
+The application includes a complete admin dashboard with authentication:
+
+**Demo Credentials:**
+- Email: `admin@estepa.com`
+- Password: `demo123`
+
+**Access the Admin Panel:**
+- Click "Admin" button in the header, or
+- Navigate directly to `/admin/login.html`
+
+**Admin Features:**
+- Dashboard with key metrics and analytics
+- Campaign management and tracking
+- Contact database management
+- Advanced analytics and reporting
+- Settings and configuration
+- Secure logout functionality
+
+The admin panel uses localStorage for session management (demo purposes). All admin pages are protected and require authentication.
 
 ### Local Development Server (Optional)
 ```bash
